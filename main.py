@@ -118,11 +118,6 @@ if __name__ == "__main__":
             rating.rate(generation_chromosomes)
         count += 1
 
-
-
-
-
-
     print("Ababou cupinxa")
     print("Melhor cromossomo")
     for chrom in bestchromosome:
