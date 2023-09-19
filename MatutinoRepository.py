@@ -122,6 +122,12 @@ class MatutinoRepository:
                         "id": 18
                     },
                     {
+                        "Disciplina": "Trabalho de Conclusão de Curso (Orientador)",
+                        "CH": 80,
+                        "Professor": "Orientador",
+                        "id": 70
+                    },
+                    {
                         "Disciplina": "Eletiva III",
                         "CH": 80,
                         "Professor": "Vilson Heck Junior",
@@ -318,6 +324,12 @@ class MatutinoRepository:
                         "CH": 80,
                         "Professor": "Fernando da Silva Osório",
                         "id": 49
+                    },
+                    {
+                        "Disciplina": "Sem aula",
+                        "CH": 240,
+                        "Professor": "Nenhum",
+                        "id": 71
                     },
                 ],
             },

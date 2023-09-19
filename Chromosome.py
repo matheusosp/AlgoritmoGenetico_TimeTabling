@@ -11,7 +11,6 @@ class Chromosome:
         self.course = course
         self.avaliation = avaliation
         self.matutinoRepository = MatutinoRepository()
-        self.was_evaluated = False
 
     def generateRandom(self):
         for i in range(50):
@@ -78,11 +77,6 @@ class Chromosome:
                 genes_in_period_and_day_with_phase.append(gene)
 
         return genes_in_period_and_day_with_phase
-    def getAvaliation(self):
-        return self.avaliation
-
-    def setAvaliation(self, avaliation):
-        self.avaliation = avaliation
 
     def set_values(self,values):
         self.values = values

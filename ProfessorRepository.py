@@ -45,6 +45,8 @@ class ProfessorRepository:
         self.data["Vilma Gisele Karsburg"] = [None, None, None, None, None]
         self.data["Vilson Heck Junior"] = ["x", "x", None, None, None]
         self.data["Wilson Castello Branco Neto"] = [None, None, None, "x", None]
+        self.data["Orientador"] = [None, None, None, None, None]
+        self.data["Nenhum"] = [None, None, None, None, None]
 
     def get_schedule(self, professor_name):
         if professor_name in self.data:

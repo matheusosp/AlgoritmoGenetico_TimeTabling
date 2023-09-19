@@ -7,25 +7,26 @@ class Rating:
         self.matutinoRepository = MatutinoRepository()
         self.professorRepository = ProfessorRepository()
 
-    def rate(self, chromosome):
+    def rate(self, generationChromosomes):
+        count = 0
+        for chromosome in generationChromosomes:
+            chromosome.avaliation = 10000
+            avaliation = 10000
+            # Demérito: Professor Indisponível -5
+            avaliation = self.teacher_is_unavailable(chromosome, chromosome.avaliation)
+            # Demérito: Turma sem alguma disciplina -30
+            avaliation = self.check_workload(chromosome, avaliation, chromosome.course)
+            chromosome.avaliation = avaliation
+            count+=1
 
-        # Demérito: Professor Indisponível -5
-        avaliation = self.teacher_is_unavailable(chromosome, chromosome.avaliation)
-
-        # Demérito: Choque de horario Professor -10
-        avaliation = self.schedule_conflict(chromosome, avaliation)
-
-        # Demérito: Turma sem alguma disciplina -30
-        avaliation = self.check_workload(chromosome, avaliation)
+        # Demérito: Choque de horario Professor -50
+        self.schedule_conflict(generationChromosomes)
 
         # Demérito: Turma com aula em fase que não existe no curso -10
         # avaliation = self.check_days_without_classes(chromosome, avaliation)
 
         # Demérito: Turma com aula desnecessaria durante a semana -10 (quando não tem CH suficiente para todos os dias)
         # avaliation = self.check_days_without_classes(chromosome, avaliation)
-
-        chromosome.avaliation = avaliation
-        chromosome.was_evaluated = True
 
     def teacher_is_unavailable(self, chromosome, avaliation):
         count = 0
@@ -39,22 +40,22 @@ class Rating:
             count += 1
         return avaliation
 
-    def schedule_conflict(self, chromosome, avaliation):
-        genes_groupedby_period = self.group_genes_by_day_and_period(chromosome)
-        for period,period_value in genes_groupedby_period.items():
-            # print(period)
-            for day,day_values in period_value.items():
-                # print(day)
-                professor_set = set()
-                for gene, professor in day_values:
-                    if professor is not None and professor in professor_set:
-                        avaliation -= 10
-                    professor_set.add(professor)
+    def schedule_conflict(self, generation_chromosomes):
+        professors_all_days_generations = self.get_professors_by_weekday(generation_chromosomes)
+        for professors_all_days in professors_all_days_generations:
+            for day in professors_all_days:
+                for period in professors_all_days[day]:
+                    professors = professors_all_days[day][period]["professores"]
+                    unique_professors = set()
 
-        return avaliation
+                    for teacher, chromosome in professors:
+                        if teacher in unique_professors:
+                            chromosome.avaliation -= 50
+                        else:
+                            unique_professors.add(teacher)
 
-    def check_workload(self, chromosome, avaliation):
-        course = "Ciência da Computação (Matutino)"
+
+    def check_workload(self, chromosome, avaliation, course):
         for phase in ["2", "4", "6", "8", "10"]:
             required_disciplines = self.matutinoRepository.getDisciplinesByPhaseAndCourse(course, phase)
 
@@ -86,6 +87,66 @@ class Rating:
 
         return avaliation
 
+    def get_professors_by_weekday(self, generationChromosomes):
+        grouped_chromosomes_by_course = self.group_genes_by_course(generationChromosomes)
+        generation_full_chromosomes = self.group_full_chromosomes(generationChromosomes, grouped_chromosomes_by_course)
+
+        schedule_by_weekday_array = []
+        for full_chromosomes in generation_full_chromosomes:
+            schedule_by_weekday = {
+                1: {
+                    "8h-10h": {"professores": []},
+                    "10h-12h": {"professores": []},
+                },
+                2: {
+                    "8h-10h": {"professores": []},
+                    "10h-12h": {"professores": []},
+                },
+                3: {
+                    "8h-10h": {"professores": []},
+                    "10h-12h": {"professores": []},
+                },
+                4: {
+                    "8h-10h": {"professores": []},
+                    "10h-12h": {"professores": []},
+                },
+                5: {
+                    "8h-10h": {"professores": []},
+                    "10h-12h": {"professores": []},
+                },
+            }
+            for partial_chromosome in full_chromosomes:
+                count = 0
+                for gene in partial_chromosome.values:
+                    if gene != 0:
+                        teacher = self.matutinoRepository.getTeacherByDisciplineId(gene)
+                        dia = (partial_chromosome.get_chosen_day(count))
+                        period = partial_chromosome.get_period(count + 1)
+                        schedule_by_weekday[dia][period]["professores"].append((teacher,partial_chromosome))
+                    count += 1
+            schedule_by_weekday_array.append(schedule_by_weekday.copy())
+
+        return schedule_by_weekday_array
+
+    def group_full_chromosomes(self, generationChromosomes, grouped_chromosomes_by_course):
+        generation_full_chromosomes = []
+        for index in range(len(grouped_chromosomes_by_course[generationChromosomes[0].course])):
+            full_chromosome = []
+            for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                full_chromosome.append(course_chromosomes[index])
+            generation_full_chromosomes.append(full_chromosome)
+        return generation_full_chromosomes
+
+    def group_genes_by_course(self, generation_chromosomes):
+        grouped_chromosomes_by_course = {}
+        for chromosome in generation_chromosomes:
+            course = chromosome.course
+            if course not in grouped_chromosomes_by_course:
+                grouped_chromosomes_by_course[course] = []
+            grouped_chromosomes_by_course[course].append(chromosome)
+
+        return grouped_chromosomes_by_course
+
     def group_genes_by_day_and_period(self, chromosome):
         grouped_genes = {
             "8h-10h": {"1": [], "2": [], "3": [], "4": [], "5": []},
@@ -98,7 +159,7 @@ class Rating:
             professor = self.matutinoRepository.getTeacherByDisciplineId(gene)
 
             if gene_period and gene_day:
-                grouped_genes[gene_period][str(gene_day)].append((gene,professor))
+                grouped_genes[gene_period][str(gene_day)].append((gene, professor))
 
         return grouped_genes
 
@@ -107,7 +168,8 @@ class Rating:
         for phase in ["2", "4", "6", "8", "10"]:
             required_disciplines = self.matutinoRepository.getDisciplinesByPhaseAndCourse(course, phase)
             total_required_hours = sum(discipline["CH"] for discipline in required_disciplines)
-            total_assigned_hours = sum(chromosome.values.count(discipline["id"]) * 40 for discipline in required_disciplines)
+            total_assigned_hours = sum(
+                chromosome.values.count(discipline["id"]) * 40 for discipline in required_disciplines)
 
             if total_assigned_hours > total_required_hours:
                 # Há aulas desnecessárias durante a semana

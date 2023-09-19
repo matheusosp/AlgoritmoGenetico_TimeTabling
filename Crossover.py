@@ -6,7 +6,7 @@ from Chromosome import Chromosome
 class Crossover:
 
     @staticmethod
-    def cross(crossoverChancePercentage, generationChromosomes, chosen_chromosomes):
+    def cross(crossoverChancePercentage, generationChromosomes, chosen_chromosomes,course):
         faATotal = sum(chromosome.avaliation for chromosome in generationChromosomes)
         final_chromosomes = chosen_chromosomes.copy()
         # final_chromosomes = []
@@ -36,8 +36,8 @@ class Crossover:
                     final_chromosome_grouped.extend([partialchromosome2_groupedby_phase])
 
             final_chromosome1, final_chromosome2 = Crossover.build_chromosomes_from_tuples(len(chosen_chromosomes[0].values), final_chromosome_grouped)
-            child1 = Chromosome(1000)
-            child2 = Chromosome(1000)
+            child1 = Chromosome(course,10000)
+            child2 = Chromosome(course,10000)
             child1.set_values(final_chromosome1)
             child2.set_values(final_chromosome2)
             final_chromosomes.extend([child1, child2])

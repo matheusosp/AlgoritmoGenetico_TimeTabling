@@ -13,7 +13,7 @@ class Mutation:
                 day = chromosome.get_chosen_day(mutation_index)
                 phase = chromosome.get_chosen_phase(mutation_index + 1)
                 disciplinas_disponiveis = (chromosome.matutinoRepository
-                                           .get_disciplinas_por_curso_fase_e_dia("Ciência da Computação (Matutino)", phase,
+                                           .get_disciplinas_por_curso_fase_e_dia(course, phase,
                                                                                  day))
                 new_gene_value = 0
                 if disciplinas_disponiveis:
