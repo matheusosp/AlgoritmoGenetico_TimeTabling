@@ -43,6 +43,35 @@ if __name__ == "__main__":
             generation_chromosomes.append(chromosome)
             generationCount += 1
 
+    grouped_chromosomes_by_course = {}
+    for chromosome in generation_chromosomes:
+        course = chromosome.course
+        if course not in grouped_chromosomes_by_course:
+            grouped_chromosomes_by_course[course] = []
+        grouped_chromosomes_by_course[course].append(chromosome)
+
+    generation_full_chromosomes = []
+    for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
+        full_chromosome = []
+        for course, course_chromosomes in grouped_chromosomes_by_course.items():
+            full_chromosome.append(course_chromosomes[index])
+        generation_full_chromosomes.append(full_chromosome)
+
+    servers_disponiveis = 5
+    tamanho_subarray = len(generation_full_chromosomes) // servers_disponiveis
+    subarrays = []
+
+    for i in range(servers_disponiveis):
+        inicio = i * tamanho_subarray
+        fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
+        subarray = generation_full_chromosomes[inicio:fim]
+
+        # Se for o último subarray e houver elementos restantes, adicione-os a este subarray
+        if fim is None and inicio < len(generation_full_chromosomes):
+            subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
+
+        subarrays.append(subarray)
+
     serialized_chromosomes = pickle.dumps(generation_chromosomes)
     rating.rate(serialized_chromosomes)
     count = 0

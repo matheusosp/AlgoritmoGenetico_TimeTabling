@@ -187,9 +187,18 @@ class Rating(object):
         return avaliation
 
 if __name__ == "__main__":
-    host_ip = socket.gethostbyname(socket.gethostname())
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+
     print("Running RMI server...")
-    server = Pyro5.api.Daemon(host=host_ip)
+    server = Pyro5.api.Daemon(host=IP)
     uri = server.register(Rating)
     print(f"Server URI: {uri}")
     server.requestLoop()
