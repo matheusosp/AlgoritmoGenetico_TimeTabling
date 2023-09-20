@@ -1,14 +1,14 @@
 import copy
-import random
-from typing import List
+import pickle
+import uuid
 
 import Pyro5.api
-import socket
+from Pyro5.api import SerializedBlob
 
 from Chromosome import Chromosome
+from ChromosomePickle import ChromosomeSerializer
 from Crossover import Crossover
 from Mutation import Mutation
-from Rating import Rating
 
 
 class Main:
@@ -17,9 +17,10 @@ class Main:
 
 
 if __name__ == "__main__":
+    rating = Pyro5.api.Proxy("PYRO:obj_cae718fcf29e4b679481ecb03ebf81a3@192.168.1.7:33958")
+
     print("Iniciando Client do AG")
     population_size = 50
-    rating = Rating()
     courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)", "Engenharia Química (Matutino)"]
 
     generation_chromosomes = []
@@ -42,7 +43,8 @@ if __name__ == "__main__":
             generation_chromosomes.append(chromosome)
             generationCount += 1
 
-    rating.rate(generation_chromosomes)
+    serialized_chromosomes = pickle.dumps(generation_chromosomes)
+    rating.rate(serialized_chromosomes)
     count = 0
     outrocount = 0
     bestchromosome = []
@@ -58,7 +60,7 @@ if __name__ == "__main__":
         new_generation = []
         for course, course_chromosomes in grouped_chromosomes_by_course.items():
             # if course == "Engenharia Química (Matutino)":
-                # print("Seleção por eletismo")
+            # print("Seleção por eletismo")
             # percentageChanceOfElitism = 10
             # num_elements_to_copy = int(population_size / percentageChanceOfElitism)
             num_elements_to_copy = 4
@@ -67,11 +69,12 @@ if __name__ == "__main__":
 
             # print("Crossover")
             crossoverChancePercentage = 70
-            new_course_chromosomes = Crossover.cross(crossoverChancePercentage, course_chromosomes, chosen_chromosomes,course)
+            new_course_chromosomes = Crossover.cross(crossoverChancePercentage, course_chromosomes, chosen_chromosomes,
+                                                     course)
 
             # print("Fazendo Mutação")
             mutationChancePercentage = 25
-            Mutation.mutate(mutationChancePercentage, new_course_chromosomes,course)
+            Mutation.mutate(mutationChancePercentage, new_course_chromosomes, course)
 
             if len(new_course_chromosomes) > population_size:
                 new_course_chromosomes = new_course_chromosomes[:population_size]
@@ -79,9 +82,9 @@ if __name__ == "__main__":
 
         generation_chromosomes = copy.deepcopy(new_generation)
         rating.rate(generation_chromosomes)
-            # print("Melhor cromossomo")
-            # print(str(course_chromosomes[0].course) + " - " + str(course_chromosomes[0].values) + " evaluation: " +
-            #       str(course_chromosomes[0].avaliation))
+        # print("Melhor cromossomo")
+        # print(str(course_chromosomes[0].course) + " - " + str(course_chromosomes[0].values) + " evaluation: " +
+        #       str(course_chromosomes[0].avaliation))
 
         generation_full_chromosomes = []
         for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):

@@ -1,15 +1,23 @@
+import base64
+import pickle
+import socket
+
+import Pyro5.api
+
 from MatutinoRepository import MatutinoRepository
 from ProfessorRepository import ProfessorRepository
 
-
-class Rating:
+@Pyro5.api.expose
+class Rating(object):
     def __init__(self):
         self.matutinoRepository = MatutinoRepository()
         self.professorRepository = ProfessorRepository()
 
-    def rate(self, generationChromosomes):
+    def rate(self, data):
+        decoded_bytes = base64.b64decode(data["data"])
+        generation_chromosomes = pickle.loads(decoded_bytes)
         count = 0
-        for chromosome in generationChromosomes:
+        for chromosome in generation_chromosomes:
             chromosome.avaliation = 10000
             avaliation = 10000
             # Demérito: Professor Indisponível -5
@@ -20,7 +28,7 @@ class Rating:
             count+=1
 
         # Demérito: Choque de horario Professor -50
-        self.schedule_conflict(generationChromosomes)
+        self.schedule_conflict(generation_chromosomes)
 
         # Demérito: Turma com aula em fase que não existe no curso -10
         # avaliation = self.check_days_without_classes(chromosome, avaliation)
@@ -177,3 +185,12 @@ class Rating:
                 avaliation -= 10 * (excess_hours // 80)  # Deduz 10 pontos para cada dia com aulas desnecessárias
 
         return avaliation
+
+if __name__ == "__main__":
+    host_ip = socket.gethostbyname(socket.gethostname())
+    print("Running RMI server...")
+    server = Pyro5.api.Daemon(host=host_ip)
+    uri = server.register(Rating)
+    print(f"Server URI: {uri}")
+    server.requestLoop()
+    print("\tWaiting requests...")

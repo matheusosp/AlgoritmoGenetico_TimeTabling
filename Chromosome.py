@@ -26,7 +26,8 @@ class Chromosome:
             else:
                 self.values.append(0)
 
-    def get_chosen_phase(self, i):
+    @staticmethod
+    def get_chosen_phase(i):
         fase_escolhida = "0"
         if i in (1, 2, 11, 12, 21, 22, 31, 32, 41, 42):
             fase_escolhida = "2"
@@ -40,7 +41,8 @@ class Chromosome:
             fase_escolhida = "10"
         return fase_escolhida
 
-    def get_period(self, gene):
+    @staticmethod
+    def get_period(gene):
         if gene in (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49):
             return "8h-10h"
         elif gene in (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50):
@@ -65,7 +67,7 @@ class Chromosome:
                 genes_in_period_and_day.append(gene)
 
         return genes_in_period_and_day
-    
+
     def get_genes_by_period_and_day_with_phase(self, period, day, phase):
         genes_in_period_and_day_with_phase = []
         for i, gene in enumerate(self.values):
@@ -78,9 +80,11 @@ class Chromosome:
 
         return genes_in_period_and_day_with_phase
 
-    def set_values(self,values):
+    def set_values(self, values):
         self.values = values
-    def get_chosen_day(self, number):
+
+    @staticmethod
+    def get_chosen_day(number):
         if 0 <= number <= 9:
             return 1
         elif 10 <= number <= 19:
@@ -91,3 +95,6 @@ class Chromosome:
             return 4
         elif 40 <= number <= 49:
             return 5
+
+
+
