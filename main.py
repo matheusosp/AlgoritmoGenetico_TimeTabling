@@ -19,7 +19,7 @@ class Main:
 
 if __name__ == "__main__":
     print("Iniciando Client do AG")
-    population_size = 50
+    population_size = 40
     courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)", "Engenharia Química (Matutino)"]
 
     generation_chromosomes = []
@@ -56,8 +56,8 @@ if __name__ == "__main__":
             full_chromosome.append(course_chromosomes[index])
         generation_full_chromosomes.append(full_chromosome)
 
-    servers_disponiveis = 1
-    tamanho_subarray = len(generation_full_chromosomes)
+    servers_disponiveis = 2
+    tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
     subarrays = []
 
     for i in range(servers_disponiveis):
@@ -70,15 +70,15 @@ if __name__ == "__main__":
         subarrays.append(subarray)
 
     new_generation_chromosomes = []
-    connection_uris = ["PYRO:obj_c0edd45b2e5c442283a20b0ee9e119d7@192.168.1.7:37218"]
+    connection_uris = ["PYRO:obj_595c9ea35fec4492987e82fd5b53f36d@192.168.1.2:44338","PYRO:obj_8f4d05d3f09b4d0d8ed283ceb5a1a290@192.168.1.2:38274"]
     uri_index = 0
     for subarray in subarrays:
         rating = Pyro5.api.Proxy(connection_uris[uri_index])
         serialized_chromosomes = pickle.dumps(subarray)
         new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
-        new_generation_chromosomes.append(new_generation_chromosome)
+        new_generation_chromosomes.extend(new_generation_chromosome)
         uri_index += 1
-    generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
+    generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
 
     count = 0
     outrocount = 0
@@ -108,7 +108,7 @@ if __name__ == "__main__":
                                                      course)
 
             # print("Fazendo Mutação")
-            mutationChancePercentage = 25
+            mutationChancePercentage = 30
             Mutation.mutate(mutationChancePercentage, new_course_chromosomes, course)
 
             if len(new_course_chromosomes) > population_size:
@@ -157,9 +157,9 @@ if __name__ == "__main__":
             rating = Pyro5.api.Proxy(connection_uris[uri_index])
             serialized_chromosomes = pickle.dumps(subarray)
             new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
-            new_generation_chromosomes.append(new_generation_chromosome)
+            new_generation_chromosomes.extend(new_generation_chromosome)
             uri_index += 1
-        generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
+        generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
 
         summed_chromosomes = [(sum(chrom.avaliation for chrom in full_chromosomes), full_chromosomes) for
                               full_chromosomes in generation_full_chromosomes1]
@@ -201,8 +201,8 @@ if __name__ == "__main__":
                     full_chromosome.append(course_chromosomes[index])
                 generation_full_chromosomes.append(full_chromosome)
 
-            servers_disponiveis = 1
-            tamanho_subarray = len(generation_full_chromosomes)
+            servers_disponiveis = 2
+            tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
             subarrays = []
 
             for i in range(servers_disponiveis):
@@ -216,13 +216,14 @@ if __name__ == "__main__":
 
             new_generation_chromosomes = []
             uri_index = 0
+
             for subarray in subarrays:
                 rating = Pyro5.api.Proxy(connection_uris[uri_index])
                 serialized_chromosomes = pickle.dumps(subarray)
                 new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
-                new_generation_chromosomes.append(new_generation_chromosome)
+                new_generation_chromosomes.extend(new_generation_chromosome)
                 uri_index += 1
-            generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
+            generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
         count += 1
 
     print("Ababou cupinxa")

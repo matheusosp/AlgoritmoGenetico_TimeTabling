@@ -207,7 +207,8 @@
       <workItem from="1694094774143" duration="39566000" />
       <workItem from="1694914271503" duration="62948000" />
       <workItem from="1695129753503" duration="8460000" />
-      <workItem from="1695159060837" duration="26345000" />
+      <workItem from="1695159060837" duration="27868000" />
+      <workItem from="1695289952726" duration="6007000" />
     </task>
     <task id="LOCAL-00001" summary="outro commit">
       <option name="closed" value="true" />
@@ -273,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695257975480</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="outro commit">
+      <option name="closed" value="true" />
+      <created>1695261078713</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695261078713</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,8 +319,8 @@
     <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$ProfessorRepository.coverage" NAME="ProfessorRepository Coverage Results" MODIFIED="1694108050574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$MatutinoRepository__1_.coverage" NAME="MatutinoRepository (1) Coverage Results" MODIFIED="1694108683899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/algoritmo_genetico$ProfessorRepository.coverage" NAME="ProfessorRepository Coverage Results" MODIFIED="1694038074824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$main.coverage" NAME="main Coverage Results" MODIFIED="1695260129159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$main.coverage" NAME="main Coverage Results" MODIFIED="1695307267599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/algoritmo_genetico$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1694036225566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$Rating.coverage" NAME="Rating Coverage Results" MODIFIED="1695257219779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/algoritmo_genetico___trab$Rating.coverage" NAME="Rating Coverage Results" MODIFIED="1695307216814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
