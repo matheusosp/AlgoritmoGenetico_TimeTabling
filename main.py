@@ -1,3 +1,4 @@
+import base64
 import copy
 import pickle
 import uuid
@@ -17,8 +18,6 @@ class Main:
 
 
 if __name__ == "__main__":
-    rating = Pyro5.api.Proxy("PYRO:obj_cae718fcf29e4b679481ecb03ebf81a3@192.168.1.7:33958")
-
     print("Iniciando Client do AG")
     population_size = 50
     courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)", "Engenharia Química (Matutino)"]
@@ -57,23 +56,29 @@ if __name__ == "__main__":
             full_chromosome.append(course_chromosomes[index])
         generation_full_chromosomes.append(full_chromosome)
 
-    servers_disponiveis = 5
-    tamanho_subarray = len(generation_full_chromosomes) // servers_disponiveis
+    servers_disponiveis = 1
+    tamanho_subarray = len(generation_full_chromosomes)
     subarrays = []
 
     for i in range(servers_disponiveis):
         inicio = i * tamanho_subarray
         fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
         subarray = generation_full_chromosomes[inicio:fim]
-
-        # Se for o último subarray e houver elementos restantes, adicione-os a este subarray
         if fim is None and inicio < len(generation_full_chromosomes):
             subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
 
         subarrays.append(subarray)
 
-    serialized_chromosomes = pickle.dumps(generation_chromosomes)
-    rating.rate(serialized_chromosomes)
+    new_generation_chromosomes = []
+    connection_uris = ["PYRO:obj_1f18b490af9a4d4490c3e49c8127a304@192.168.1.7:36317"]
+    uri_index = 0
+    for subarray in subarrays:
+        rating = Pyro5.api.Proxy(connection_uris[uri_index])
+        serialized_chromosomes = pickle.dumps(subarray)
+        new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
+        new_generation_chromosomes.append(new_generation_chromosome)
+        uri_index += 1
+
     count = 0
     outrocount = 0
     bestchromosome = []
