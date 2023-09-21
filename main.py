@@ -70,7 +70,7 @@ if __name__ == "__main__":
         subarrays.append(subarray)
 
     new_generation_chromosomes = []
-    connection_uris = ["PYRO:obj_1f18b490af9a4d4490c3e49c8127a304@192.168.1.7:36317"]
+    connection_uris = ["PYRO:obj_c0edd45b2e5c442283a20b0ee9e119d7@192.168.1.7:37218"]
     uri_index = 0
     for subarray in subarrays:
         rating = Pyro5.api.Proxy(connection_uris[uri_index])
@@ -78,6 +78,7 @@ if __name__ == "__main__":
         new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
         new_generation_chromosomes.append(new_generation_chromosome)
         uri_index += 1
+    generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
 
     count = 0
     outrocount = 0
@@ -115,10 +116,22 @@ if __name__ == "__main__":
             new_generation.extend(new_course_chromosomes)
 
         generation_chromosomes = copy.deepcopy(new_generation)
-        rating.rate(generation_chromosomes)
         # print("Melhor cromossomo")
         # print(str(course_chromosomes[0].course) + " - " + str(course_chromosomes[0].values) + " evaluation: " +
         #       str(course_chromosomes[0].avaliation))
+
+        generation_full_chromosomes1 = []
+        for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
+            full_chromosome = []
+            for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                full_chromosome.append(course_chromosomes[index])
+            generation_full_chromosomes1.append(full_chromosome)
+        grouped_chromosomes_by_course = {}
+        for chromosome in generation_chromosomes:
+            course = chromosome.course
+            if course not in grouped_chromosomes_by_course:
+                grouped_chromosomes_by_course[course] = []
+            grouped_chromosomes_by_course[course].append(chromosome)
 
         generation_full_chromosomes = []
         for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
@@ -127,8 +140,28 @@ if __name__ == "__main__":
                 full_chromosome.append(course_chromosomes[index])
             generation_full_chromosomes.append(full_chromosome)
 
+        subarrays = []
+        for i in range(servers_disponiveis):
+            inicio = i * tamanho_subarray
+            fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
+            subarray = generation_full_chromosomes[inicio:fim]
+            if fim is None and inicio < len(generation_full_chromosomes):
+                subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
+
+            subarrays.append(subarray)
+
+        new_generation_chromosomes = []
+        uri_index = 0
+        for subarray in subarrays:
+            rating = Pyro5.api.Proxy(connection_uris[uri_index])
+            serialized_chromosomes = pickle.dumps(subarray)
+            new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
+            new_generation_chromosomes.append(new_generation_chromosome)
+            uri_index += 1
+        generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
+
         summed_chromosomes = [(sum(chrom.avaliation for chrom in full_chromosomes), full_chromosomes) for
-                              full_chromosomes in generation_full_chromosomes]
+                              full_chromosomes in generation_full_chromosomes1]
         sorted_summed_chromosomes = sorted(summed_chromosomes, key=lambda x: x[0], reverse=True)
         if sorted_summed_chromosomes[0][0] > (sum(chrom.avaliation for chrom in bestchromosome)):
             bestchromosome = copy.deepcopy(sorted_summed_chromosomes[0][1])
@@ -152,7 +185,42 @@ if __name__ == "__main__":
                 if generationCount == population_size:
                     generationCount = 0
                 index += 1
-            rating.rate(generation_chromosomes)
+                grouped_chromosomes_by_course = {}
+                for chromosome in generation_chromosomes:
+                    course = chromosome.course
+                    if course not in grouped_chromosomes_by_course:
+                        grouped_chromosomes_by_course[course] = []
+                    grouped_chromosomes_by_course[course].append(chromosome)
+
+                generation_full_chromosomes = []
+                for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
+                    full_chromosome = []
+                    for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                        full_chromosome.append(course_chromosomes[index])
+                    generation_full_chromosomes.append(full_chromosome)
+
+                servers_disponiveis = 1
+                tamanho_subarray = len(generation_full_chromosomes)
+                subarrays = []
+
+                for i in range(servers_disponiveis):
+                    inicio = i * tamanho_subarray
+                    fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
+                    subarray = generation_full_chromosomes[inicio:fim]
+                    if fim is None and inicio < len(generation_full_chromosomes):
+                        subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
+
+                    subarrays.append(subarray)
+
+                new_generation_chromosomes = []
+                uri_index = 0
+                for subarray in subarrays:
+                    rating = Pyro5.api.Proxy(connection_uris[uri_index])
+                    serialized_chromosomes = pickle.dumps(subarray)
+                    new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
+                    new_generation_chromosomes.append(new_generation_chromosome)
+                    uri_index += 1
+                generation_chromosomes = copy.deepcopy(new_generation_chromosomes[0])
         count += 1
 
     print("Ababou cupinxa")
