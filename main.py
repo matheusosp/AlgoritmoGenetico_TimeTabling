@@ -56,7 +56,7 @@ if __name__ == "__main__":
             full_chromosome.append(course_chromosomes[index])
         generation_full_chromosomes.append(full_chromosome)
 
-    servers_disponiveis = 2
+    servers_disponiveis = 4
     tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
     subarrays = []
 
@@ -70,7 +70,8 @@ if __name__ == "__main__":
         subarrays.append(subarray)
 
     new_generation_chromosomes = []
-    connection_uris = ["PYRO:obj_595c9ea35fec4492987e82fd5b53f36d@192.168.1.2:44338","PYRO:obj_8f4d05d3f09b4d0d8ed283ceb5a1a290@192.168.1.2:38274"]
+    connection_uris = ["PYRO:obj_595c9ea35fec4492987e82fd5b53f36d@192.168.1.2:44338","PYRO:obj_8f4d05d3f09b4d0d8ed283ceb5a1a290@192.168.1.2:38274",
+                       "PYRO:obj_e05c57d29a1042bcbf28fa7122d25223@192.168.1.2:40587","PYRO:obj_9eeb71bbbd2445c8b24dd02dd5b7ce9e@192.168.1.2:40713"]
     uri_index = 0
     for subarray in subarrays:
         rating = Pyro5.api.Proxy(connection_uris[uri_index])
@@ -201,7 +202,7 @@ if __name__ == "__main__":
                     full_chromosome.append(course_chromosomes[index])
                 generation_full_chromosomes.append(full_chromosome)
 
-            servers_disponiveis = 2
+            servers_disponiveis = 4
             tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
             subarrays = []
 
