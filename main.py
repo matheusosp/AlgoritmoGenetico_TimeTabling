@@ -1,234 +1,195 @@
 import base64
 import copy
 import pickle
-import uuid
+import time
 
 import Pyro5.api
-from Pyro5.api import SerializedBlob
 
 from Chromosome import Chromosome
-from ChromosomePickle import ChromosomeSerializer
 from Crossover import Crossover
 from Mutation import Mutation
 
 
-class Main:
+class TimetablingResolver:
     def __init__(self):
-        pass
+        self.population_size = 40
+        self.servers_disponiveis = 3
+        self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
+        self.courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)",
+                        "Engenharia Química (Matutino)"]
+        self.connection_uris = ["PYRO:obj_4ee4540b8c6c445bbcf035807cefbe4a@192.168.1.2:30456",
+                                "PYRO:obj_f7ddd4bf17144560b1188bed16496098@192.168.1.2:30496",
+                                "PYRO:obj_48635ca9a9dc4e3c8567453f252113ec@192.168.1.2:30575"]
 
-
-if __name__ == "__main__":
-    print("Iniciando Client do AG")
-    population_size = 40
-    courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)", "Engenharia Química (Matutino)"]
-
-    generation_chromosomes = []
-    # initialValuesCC = [1, 3, 6, 9, 15, 14, 20, 21, 0, 0, 3, 2, 11, 11, 17, 16, 21, 70, 0, 0, 5, 1, 7, 12, 15, 13, 18, 70, 0, 0, 4, 4, 7, 10, 17, 14, 20, 19, 0, 0, 2, 5, 10, 8, 16, 13, 19, 18, 0, 0]
-    # initialValuesEM = [27, 24, 29, 30, 36, 35, 47, 43, 48, 49, 24, 22, 31, 31, 37, 34, 40, 46, 71, 71, 26, 22, 28, 29, 34, 39, 44, 40, 71, 71, 23, 26, 28, 33, 39, 35, 47, 41, 71, 48, 23, 25, 32, 30, 38, 36, 42, 45, 71, 49]
-    # initialValuesEQ = [50, 50, 62, 62, 69, 66, 0, 0, 0, 0, 51, 53, 56, 58, 65, 67, 0, 0, 0, 0, 53, 55, 60, 57, 64, 64, 0, 0, 0, 0, 55, 51, 61, 63, 68, 67, 0, 0, 0, 0, 54, 52, 59, 58, 66, 65, 0, 0, 0, 0]
-    for course in courses:
-        generationCount = 0
-        # if course == "Engenharia Química (Matutino)":
-        while generationCount < population_size:
-            # if generationCount == 0 and course == "Ciência da Computação (Matutino)":
-            #     chromosome = Chromosome(course,10000, initialValuesCC)
-            # elif generationCount == 0 and course == "Engenharia Mecânica (Matutino)":
-            #     chromosome = Chromosome(course, 10000, initialValuesEM)
-            # elif generationCount == 0 and course == "Engenharia Química (Matutino)":
-            #     chromosome = Chromosome(course, 10000, initialValuesEQ)
-            # else:
-            chromosome = Chromosome(course, 10000, None)
-            chromosome.generateRandom()
-            generation_chromosomes.append(chromosome)
-            generationCount += 1
-
-    grouped_chromosomes_by_course = {}
-    for chromosome in generation_chromosomes:
-        course = chromosome.course
-        if course not in grouped_chromosomes_by_course:
-            grouped_chromosomes_by_course[course] = []
-        grouped_chromosomes_by_course[course].append(chromosome)
-
-    generation_full_chromosomes = []
-    for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
-        full_chromosome = []
-        for course, course_chromosomes in grouped_chromosomes_by_course.items():
-            full_chromosome.append(course_chromosomes[index])
-        generation_full_chromosomes.append(full_chromosome)
-
-    servers_disponiveis = 4
-    tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
-    subarrays = []
-
-    for i in range(servers_disponiveis):
-        inicio = i * tamanho_subarray
-        fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
-        subarray = generation_full_chromosomes[inicio:fim]
-        if fim is None and inicio < len(generation_full_chromosomes):
-            subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
-
-        subarrays.append(subarray)
-
-    new_generation_chromosomes = []
-    connection_uris = ["PYRO:obj_595c9ea35fec4492987e82fd5b53f36d@192.168.1.2:44338","PYRO:obj_8f4d05d3f09b4d0d8ed283ceb5a1a290@192.168.1.2:38274",
-                       "PYRO:obj_e05c57d29a1042bcbf28fa7122d25223@192.168.1.2:40587","PYRO:obj_9eeb71bbbd2445c8b24dd02dd5b7ce9e@192.168.1.2:40713"]
-    uri_index = 0
-    for subarray in subarrays:
-        rating = Pyro5.api.Proxy(connection_uris[uri_index])
-        serialized_chromosomes = pickle.dumps(subarray)
-        new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
-        new_generation_chromosomes.extend(new_generation_chromosome)
-        uri_index += 1
-    generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
-
-    count = 0
-    outrocount = 0
-    bestchromosome = []
-    while count < 2000000:
-        print("-------------------------------- Geração " + str(count) + " --------------------------------")
-        grouped_chromosomes_by_course = {}
-        for chromosome in generation_chromosomes:
-            course = chromosome.course
-            if course not in grouped_chromosomes_by_course:
-                grouped_chromosomes_by_course[course] = []
-            grouped_chromosomes_by_course[course].append(chromosome)
-
-        new_generation = []
-        for course, course_chromosomes in grouped_chromosomes_by_course.items():
+    def start(self):
+        generation_chromosomes = []
+        generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]
+        # initialValuesCC = [1, 3, 6, 9, 15, 14, 20, 21, 0, 0, 3, 2, 11, 11, 17, 16, 21, 70, 0, 0, 5, 1, 7, 12, 15, 13, 18, 70, 0, 0, 4, 4, 7, 10, 17, 14, 20, 19, 0, 0, 2, 5, 10, 8, 16, 13, 19, 18, 0, 0]
+        # initialValuesEM = [27, 24, 29, 30, 36, 35, 47, 43, 48, 49, 24, 22, 31, 31, 37, 34, 40, 46, 71, 71, 26, 22, 28, 29, 34, 39, 44, 40, 71, 71, 23, 26, 28, 33, 39, 35, 47, 41, 71, 48, 23, 25, 32, 30, 38, 36, 42, 45, 71, 49]
+        # initialValuesEQ = [50, 50, 62, 62, 69, 66, 0, 0, 0, 0, 51, 53, 56, 58, 65, 67, 0, 0, 0, 0, 53, 55, 60, 57, 64, 64, 0, 0, 0, 0, 55, 51, 61, 63, 68, 67, 0, 0, 0, 0, 54, 52, 59, 58, 66, 65, 0, 0, 0, 0]
+        for course in self.courses:
+            generation_count = 0
             # if course == "Engenharia Química (Matutino)":
-            # print("Seleção por eletismo")
-            # percentageChanceOfElitism = 10
-            # num_elements_to_copy = int(population_size / percentageChanceOfElitism)
-            num_elements_to_copy = 4
-            elite_chromosomes = sorted(course_chromosomes, key=lambda x: x.avaliation, reverse=True)
-            chosen_chromosomes = elite_chromosomes[:num_elements_to_copy]
-
-            # print("Crossover")
-            crossoverChancePercentage = 70
-            new_course_chromosomes = Crossover.cross(crossoverChancePercentage, course_chromosomes, chosen_chromosomes,
-                                                     course)
-
-            # print("Fazendo Mutação")
-            mutationChancePercentage = 30
-            Mutation.mutate(mutationChancePercentage, new_course_chromosomes, course)
-
-            if len(new_course_chromosomes) > population_size:
-                new_course_chromosomes = new_course_chromosomes[:population_size]
-            new_generation.extend(new_course_chromosomes)
-
-        generation_chromosomes = copy.deepcopy(new_generation)
-        # print("Melhor cromossomo")
-        # print(str(course_chromosomes[0].course) + " - " + str(course_chromosomes[0].values) + " evaluation: " +
-        #       str(course_chromosomes[0].avaliation))
-
-        generation_full_chromosomes1 = []
-        for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
-            full_chromosome = []
-            for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                full_chromosome.append(course_chromosomes[index])
-            generation_full_chromosomes1.append(full_chromosome)
-
-        grouped_chromosomes_by_course = {}
-        for chromosome in generation_chromosomes:
-            course = chromosome.course
-            if course not in grouped_chromosomes_by_course:
-                grouped_chromosomes_by_course[course] = []
-            grouped_chromosomes_by_course[course].append(chromosome)
-
-        generation_full_chromosomes = []
-        for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
-            full_chromosome = []
-            for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                full_chromosome.append(course_chromosomes[index])
-            generation_full_chromosomes.append(full_chromosome)
-
-        subarrays = []
-        for i in range(servers_disponiveis):
-            inicio = i * tamanho_subarray
-            fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
-            subarray = generation_full_chromosomes[inicio:fim]
-            if fim is None and inicio < len(generation_full_chromosomes):
-                subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
-
-            subarrays.append(subarray)
+            while generation_count < self.population_size:
+                # if generationCount == 0 and course == "Ciência da Computação (Matutino)":
+                #     chromosome = Chromosome(course,10000, initialValuesCC)
+                # elif generationCount == 0 and course == "Engenharia Mecânica (Matutino)":
+                #     chromosome = Chromosome(course, 10000, initialValuesEM)
+                # elif generationCount == 0 and course == "Engenharia Química (Matutino)":
+                #     chromosome = Chromosome(course, 10000, initialValuesEQ)
+                # else:
+                chromosome = Chromosome(course, 10000, None)
+                chromosome.generateRandom()
+                generation_chromosomes.append(chromosome)
+                index_generation_send = generation_count // self.generation_length_to_send
+                if index_generation_send  > self.servers_disponiveis - 1:
+                    index_generation_send = self.servers_disponiveis -1
+                generation_chromosomes_to_send[index_generation_send].append(chromosome)
+                generation_count += 1
 
         new_generation_chromosomes = []
         uri_index = 0
-        for subarray in subarrays:
-            rating = Pyro5.api.Proxy(connection_uris[uri_index])
+        for subarray in generation_chromosomes_to_send:
+            rating = Pyro5.api.Proxy(self.connection_uris[uri_index])
             serialized_chromosomes = pickle.dumps(subarray)
             new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
             new_generation_chromosomes.extend(new_generation_chromosome)
             uri_index += 1
         generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
 
-        summed_chromosomes = [(sum(chrom.avaliation for chrom in full_chromosomes), full_chromosomes) for
-                              full_chromosomes in generation_full_chromosomes1]
-        sorted_summed_chromosomes = sorted(summed_chromosomes, key=lambda x: x[0], reverse=True)
-        if sorted_summed_chromosomes[0][0] > (sum(chrom.avaliation for chrom in bestchromosome)):
-            bestchromosome = copy.deepcopy(sorted_summed_chromosomes[0][1])
-        if sorted_summed_chromosomes[0][0] >= 29900:
-            outrocount += 1
-        if sorted_summed_chromosomes[0][0] == 30000:
-            break
-        print("Melhor avaliação: " + str(sorted_summed_chromosomes[0][0]))
-
-        if outrocount == 50:
-            outrocount = 0
-            new_random_population = population_size / 2
-            index = 0
-            generationCount = 0
-            for chrom in generation_chromosomes:
-                if generationCount >= new_random_population:
-                    chromosome = Chromosome(chrom.course, 10000, None)
-                    chromosome.generateRandom()
-                    generation_chromosomes[index] = chromosome
-                generationCount += 1
-                if generationCount == population_size:
-                    generationCount = 0
-                index += 1
-
+        count = 0
+        outro_count = 0
+        best_chromosome = []
+        start_time = time.perf_counter()
+        while count < 2000000:
+            print("-------------------------------- Geração " + str(count) + " --------------------------------")
             grouped_chromosomes_by_course = {}
+            generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]
             for chromosome in generation_chromosomes:
                 course = chromosome.course
                 if course not in grouped_chromosomes_by_course:
                     grouped_chromosomes_by_course[course] = []
                 grouped_chromosomes_by_course[course].append(chromosome)
 
-            generation_full_chromosomes = []
-            for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
-                full_chromosome = []
-                for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                    full_chromosome.append(course_chromosomes[index])
-                generation_full_chromosomes.append(full_chromosome)
+            new_generation = []
+            for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                num_elements_to_copy = 2
+                elite_chromosomes = sorted(course_chromosomes, key=lambda x: x.avaliation, reverse=True)
+                chosen_chromosomes = elite_chromosomes[:num_elements_to_copy]
 
-            servers_disponiveis = 4
-            tamanho_subarray = int(len(generation_full_chromosomes) / servers_disponiveis)
-            subarrays = []
+                crossover_chance_percentage = 70
+                new_course_chromosomes = Crossover.cross(crossover_chance_percentage, course_chromosomes,
+                                                         chosen_chromosomes,
+                                                         course)
 
-            for i in range(servers_disponiveis):
-                inicio = i * tamanho_subarray
-                fim = (i + 1) * tamanho_subarray if i < servers_disponiveis - 1 else None
-                subarray = generation_full_chromosomes[inicio:fim]
-                if fim is None and inicio < len(generation_full_chromosomes):
-                    subarray += generation_full_chromosomes[inicio + tamanho_subarray:]
+                mutation_chance_percentage = 30
+                Mutation.mutate(mutation_chance_percentage, new_course_chromosomes, course)
 
-                subarrays.append(subarray)
+                if len(new_course_chromosomes) > self.population_size:
+                    new_course_chromosomes = new_course_chromosomes[:self.population_size]
+                new_generation.extend(new_course_chromosomes)
+
+                start = 0
+                end = self.generation_length_to_send
+                index_generation_send = 0
+                while index_generation_send < self.servers_disponiveis:
+                    if index_generation_send == self.servers_disponiveis -1:
+                        end = self.population_size
+                    generation_chromosomes_to_send[index_generation_send].extend(new_course_chromosomes[start:end])
+                    start = end
+                    end += self.generation_length_to_send
+                    index_generation_send += 1
 
             new_generation_chromosomes = []
             uri_index = 0
-
-            for subarray in subarrays:
-                rating = Pyro5.api.Proxy(connection_uris[uri_index])
+            for subarray in generation_chromosomes_to_send:
+                rating = Pyro5.api.Proxy(self.connection_uris[uri_index])
                 serialized_chromosomes = pickle.dumps(subarray)
                 new_generation_chromosome = pickle.loads(base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
                 new_generation_chromosomes.extend(new_generation_chromosome)
                 uri_index += 1
-            generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
-        count += 1
 
-    print("Ababou cupinxa")
-    print("Melhor cromossomo")
-    for chrom in bestchromosome:
-        print(str(chrom.course) + " - " + str(chrom.values) + " evaluation: " +
-              str(chrom.avaliation))
+            generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
+
+            summed_chromosomes = []
+            for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
+                full_chromosome = []
+                for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                    full_chromosome.append(course_chromosomes[index])
+                summed_chromosomes.append(((sum(chrom.avaliation for chrom in full_chromosome),full_chromosome)))
+
+            sorted_summed_chromosomes = sorted(summed_chromosomes, key=lambda x: x[0], reverse=True)
+            if sorted_summed_chromosomes[0][0] > (sum(chrom.avaliation for chrom in best_chromosome)):
+                best_chromosome = copy.deepcopy(sorted_summed_chromosomes[0][1])
+            if sorted_summed_chromosomes[0][0] >= 29900:
+                outro_count += 1
+            if sorted_summed_chromosomes[0][0] == 30000:
+                break
+            print("Melhor avaliação: " + str(sorted_summed_chromosomes[0][0]))
+
+            if outro_count == 50:
+                outro_count = 0
+                new_random_population = self.population_size / 2
+                index = 0
+                generation_count = 0
+                for chrom in generation_chromosomes:
+                    if generation_count >= new_random_population:
+                        chromosome = Chromosome(chrom.course, 10000, None)
+                        chromosome.generateRandom()
+                        generation_chromosomes[index] = chromosome
+                    generation_count += 1
+                    if generation_count == self.population_size:
+                        generation_count = 0
+                    index += 1
+
+                grouped_chromosomes_by_course = {}
+                for chromosome in generation_chromosomes:
+                    course = chromosome.course
+                    if course not in grouped_chromosomes_by_course:
+                        grouped_chromosomes_by_course[course] = []
+                    grouped_chromosomes_by_course[course].append(chromosome)
+
+                generation_full_chromosomes = []
+                for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
+                    full_chromosome = []
+                    for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                        full_chromosome.append(course_chromosomes[index])
+                    generation_full_chromosomes.append(full_chromosome)
+
+                subarrays = []
+                for i in range(self.servers_disponiveis):
+                    inicio = i * self.generation_length_to_send
+                    fim = (i + 1) * self.generation_length_to_send if i < self.servers_disponiveis - 1 else None
+                    subarray = generation_full_chromosomes[inicio:fim]
+                    if fim is None and inicio < len(generation_full_chromosomes):
+                        subarray += generation_full_chromosomes[inicio + self.generation_length_to_send:]
+                    subarrays.append(subarray)
+
+                new_generation_chromosomes = []
+                uri_index = 0
+                for subarray in subarrays:
+                    rating = Pyro5.api.Proxy(self.connection_uris[uri_index])
+                    serialized_chromosomes = pickle.dumps(subarray)
+                    new_generation_chromosome = pickle.loads(
+                    base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
+                    new_generation_chromosomes.extend(new_generation_chromosome)
+                    uri_index += 1
+
+                generation_chromosomes = copy.deepcopy(new_generation_chromosomes)
+            count += 1
+
+        print("Ababou cupinxa")
+        end_time = time.perf_counter()
+        elapsed_time = end_time - start_time
+        print(f"Tempo total de execução: {elapsed_time:.2f} segundos")
+
+        print("Melhor cromossomo")
+        for chrom in best_chromosome:
+            print(str(chrom.course) + " - " + str(chrom.values) + " evaluation: " +
+                  str(chrom.avaliation))
+
+
+if __name__ == "__main__":
+    print("Iniciando Client do AG")
+    solver = TimetablingResolver()
+    solver.start()
