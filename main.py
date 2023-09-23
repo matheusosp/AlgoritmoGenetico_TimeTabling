@@ -130,44 +130,35 @@ class TimetablingResolver:
             if outro_count == 50:
                 outro_count = 0
                 new_random_population = self.population_size / 2
-                index = 0
-                generation_count = 0
-                for chrom in generation_chromosomes:
-                    if generation_count >= new_random_population:
-                        chromosome = Chromosome(chrom.course, 10000, None)
-                        chromosome.generateRandom()
-                        generation_chromosomes[index] = chromosome
-                    generation_count += 1
-                    if generation_count == self.population_size:
-                        generation_count = 0
-                    index += 1
+                generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]
 
-                grouped_chromosomes_by_course = {}
-                for chromosome in generation_chromosomes:
-                    course = chromosome.course
-                    if course not in grouped_chromosomes_by_course:
-                        grouped_chromosomes_by_course[course] = []
-                    grouped_chromosomes_by_course[course].append(chromosome)
+                for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                    new_course_chromosomes = []
+                    index = 0
+                    for chrom in course_chromosomes:
+                        if index >= new_random_population:
+                            chromosome = Chromosome(course, 10000, None)
+                            chromosome.generateRandom()
+                            generation_chromosomes[index] = chromosome
+                            new_course_chromosomes.append(chromosome)
+                        else:
+                            new_course_chromosomes.append(chrom)
+                        index += 1
 
-                generation_full_chromosomes = []
-                for index in range(len(grouped_chromosomes_by_course[generation_chromosomes[0].course])):
-                    full_chromosome = []
-                    for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                        full_chromosome.append(course_chromosomes[index])
-                    generation_full_chromosomes.append(full_chromosome)
-
-                subarrays = []
-                for i in range(self.servers_disponiveis):
-                    inicio = i * self.generation_length_to_send
-                    fim = (i + 1) * self.generation_length_to_send if i < self.servers_disponiveis - 1 else None
-                    subarray = generation_full_chromosomes[inicio:fim]
-                    if fim is None and inicio < len(generation_full_chromosomes):
-                        subarray += generation_full_chromosomes[inicio + self.generation_length_to_send:]
-                    subarrays.append(subarray)
+                    start = 0
+                    end = self.generation_length_to_send
+                    index_generation_send = 0
+                    while index_generation_send < self.servers_disponiveis:
+                        if index_generation_send == self.servers_disponiveis -1:
+                            end = self.population_size
+                        generation_chromosomes_to_send[index_generation_send].extend(new_course_chromosomes[start:end])
+                        start = end
+                        end += self.generation_length_to_send
+                        index_generation_send += 1
 
                 new_generation_chromosomes = []
                 uri_index = 0
-                for subarray in subarrays:
+                for subarray in generation_chromosomes_to_send:
                     rating = Pyro5.api.Proxy(self.connection_uris[uri_index])
                     serialized_chromosomes = pickle.dumps(subarray)
                     new_generation_chromosome = pickle.loads(
