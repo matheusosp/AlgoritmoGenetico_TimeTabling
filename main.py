@@ -73,7 +73,7 @@ class TimetablingResolver:
 
             new_generation = []
             for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                num_elements_to_copy = 2
+                num_elements_to_copy = 4
                 elite_chromosomes = sorted(course_chromosomes, key=lambda x: x.avaliation, reverse=True)
                 chosen_chromosomes = elite_chromosomes[:num_elements_to_copy]
 
@@ -82,7 +82,7 @@ class TimetablingResolver:
                                                          chosen_chromosomes,
                                                          course)
 
-                mutation_chance_percentage = 30
+                mutation_chance_percentage = 20
                 Mutation.mutate(mutation_chance_percentage, new_course_chromosomes, course)
 
                 if len(new_course_chromosomes) > self.population_size:
