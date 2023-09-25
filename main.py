@@ -12,8 +12,11 @@ from Mutation import Mutation
 
 class TimetablingResolver:
     def __init__(self):
-        self.population_size = 40
+        self.population_size = 50
         self.servers_disponiveis = 3
+        self.num_chromosomes_elitism = 4
+        self.crossover_chance_percentage = 70
+        self.mutation_chance_percentage = 25
         self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
         self.courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)",
                         "Engenharia Química (Matutino)"]
@@ -73,17 +76,14 @@ class TimetablingResolver:
 
             new_generation = []
             for course, course_chromosomes in grouped_chromosomes_by_course.items():
-                num_elements_to_copy = 4
                 elite_chromosomes = sorted(course_chromosomes, key=lambda x: x.avaliation, reverse=True)
-                chosen_chromosomes = elite_chromosomes[:num_elements_to_copy]
+                chosen_chromosomes = elite_chromosomes[:self.num_chromosomes_elitism]
 
-                crossover_chance_percentage = 70
-                new_course_chromosomes = Crossover.cross(crossover_chance_percentage, course_chromosomes,
+                new_course_chromosomes = Crossover.cross(self.crossover_chance_percentage, course_chromosomes,
                                                          chosen_chromosomes,
                                                          course)
 
-                mutation_chance_percentage = 20
-                Mutation.mutate(mutation_chance_percentage, new_course_chromosomes, course)
+                Mutation.mutate(self.mutation_chance_percentage, new_course_chromosomes, course)
 
                 if len(new_course_chromosomes) > self.population_size:
                     new_course_chromosomes = new_course_chromosomes[:self.population_size]
@@ -162,7 +162,7 @@ class TimetablingResolver:
                     rating = Pyro5.api.Proxy(self.connection_uris[uri_index])
                     serialized_chromosomes = pickle.dumps(subarray)
                     new_generation_chromosome = pickle.loads(
-                    base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
+                        base64.b64decode(rating.rate(serialized_chromosomes)["data"]))
                     new_generation_chromosomes.extend(new_generation_chromosome)
                     uri_index += 1
 
