@@ -18,19 +18,6 @@ class Rating(object):
     def rate(self, data):
         decoded_bytes = base64.b64decode(data["data"])
         generation_chromosomes = pickle.loads(decoded_bytes)
-        # full_generation_chromosomes = pickle.loads(decoded_bytes)
-        # full_generation_chromosomes_length = len(full_generation_chromosomes)
-        # generation_chromosomes = [None] * (full_generation_chromosomes_length * len(full_generation_chromosomes[0]))
-        # index = 0
-        # for full_chromosome in full_generation_chromosomes:
-        #     index_aux = 0
-        #     for course_chromosome in full_chromosome:
-        #         real_index = index
-        #         if index_aux != 0:
-        #             real_index = index + (full_generation_chromosomes_length * index_aux)
-        #         generation_chromosomes[real_index] = course_chromosome
-        #         index_aux += 1
-        #     index += 1
 
         chromosome: Chromosome
         for chromosome in generation_chromosomes:

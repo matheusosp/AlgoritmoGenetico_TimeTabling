@@ -12,18 +12,17 @@ from Mutation import Mutation
 
 class TimetablingResolver:
     def __init__(self):
-        self.population_size = 50
-        self.servers_disponiveis = 3
+        self.population_size = 20
         self.num_chromosomes_elitism = 4
         self.crossover_chance_percentage = 70
-        self.mutation_chance_percentage = 25
-        self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
+        self.mutation_chance_percentage = 45
         self.courses = ["Ciência da Computação (Matutino)", "Engenharia Mecânica (Matutino)",
                         "Engenharia Química (Matutino)"]
-        self.connection_uris = ["PYRO:obj_4ee4540b8c6c445bbcf035807cefbe4a@192.168.1.2:30456",
-                                "PYRO:obj_f7ddd4bf17144560b1188bed16496098@192.168.1.2:30496",
-                                "PYRO:obj_48635ca9a9dc4e3c8567453f252113ec@192.168.1.2:30575"]
-
+        self.connection_uris = ["PYRO:obj_3f71892dae7a499aa42e9bc7a05cd957@192.168.1.7:33707",
+                                "PYRO:obj_cb292776842045048f3f24ed0ad02914@192.168.1.7:33714",
+                                "PYRO:obj_ecb34993cb02416698ff959615142488@192.168.1.7:33723"]
+        self.servers_disponiveis = len(self.connection_uris)
+        self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
     def start(self):
         generation_chromosomes = []
         generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]
@@ -83,10 +82,14 @@ class TimetablingResolver:
                                                          chosen_chromosomes,
                                                          course)
 
-                Mutation.mutate(self.mutation_chance_percentage, new_course_chromosomes, course)
 
                 if len(new_course_chromosomes) > self.population_size:
                     new_course_chromosomes = new_course_chromosomes[:self.population_size]
+
+                Mutation.mutate(self.mutation_chance_percentage, new_course_chromosomes, course,self.num_chromosomes_elitism)
+
+
+
                 new_generation.extend(new_course_chromosomes)
 
                 start = 0
@@ -127,7 +130,7 @@ class TimetablingResolver:
                 break
             print("Melhor avaliação: " + str(sorted_summed_chromosomes[0][0]))
 
-            if outro_count == 50:
+            if outro_count == 100:
                 outro_count = 0
                 new_random_population = self.population_size / 2
                 generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]

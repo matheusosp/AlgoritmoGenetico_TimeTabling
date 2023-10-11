@@ -57,6 +57,14 @@ class Chromosome:
                 genes_in_period.append(gene)
         return genes_in_period
 
+    def get_genes_by_phase(self, phase):
+        genes_in_phase = []
+        for i in range(len(self.values)):
+            gene_phase = self.get_chosen_phase(i + 1)
+            if gene_phase == phase:
+                genes_in_phase.append((i,self.values[i]))
+        return genes_in_phase
+
     def get_genes_by_period_and_day(self, period, day):
         genes_in_period_and_day = []
         for i, gene in enumerate(self.values):
