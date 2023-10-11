@@ -34,7 +34,30 @@ class Rating(object):
         # Demérito: Choque de horario Professor -50
         self.schedule_conflict(generation_chromosomes)
 
-        return pickle.dumps(generation_chromosomes)
+        grouped_chromosomes_by_course = self.get_grouped_chromosomes(generation_chromosomes)
+        summed_chromosomes = self.get_summed_chromosomes(grouped_chromosomes_by_course,len(grouped_chromosomes_by_course[generation_chromosomes[0].course]))
+
+        return pickle.dumps((generation_chromosomes, grouped_chromosomes_by_course, summed_chromosomes))
+
+    def get_summed_chromosomes(self, grouped_chromosomes_by_course, population_size):
+        summed_chromosomes = []
+        for index in range(population_size):
+            full_chromosome = []
+            for course, course_chromosomes in grouped_chromosomes_by_course.items():
+                full_chromosome.append(course_chromosomes[index])
+            summed_chromosomes.append((sum(chrom.avaliation for chrom in full_chromosome), full_chromosome))
+
+        return summed_chromosomes
+
+    def get_grouped_chromosomes(self, generation_chromosomes):
+        grouped_chromosomes_by_course = {}
+        for chromosome in generation_chromosomes:
+            course = chromosome.course
+            if course not in grouped_chromosomes_by_course:
+                grouped_chromosomes_by_course[course] = []
+            grouped_chromosomes_by_course[course].append(chromosome)
+
+        return grouped_chromosomes_by_course
 
     def teacher_is_unavailable(self, chromosome, avaliation):
         count = 0
