@@ -1,5 +1,5 @@
 class ProfessorRepository:
-    def __init__(self):
+    def __init__(self, isMatutino):
         self.data = {}
         self.data["Ailton Durigon"] = ["x", None, None, None, None]
         self.data["Alexandre Perin de Souza"] = [None, "x", None, None, None]
@@ -48,13 +48,31 @@ class ProfessorRepository:
         self.data["Orientador"] = [None, None, None, None, None]
         self.data["Nenhum"] = [None, None, None, None, None]
 
+        if isMatutino == False:
+            for d in self.data.items():
+                d[1][0] = "x"
+        self.data["Sem Aula(Vespertino)TII1"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TII2"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TII3"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TII4"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TII5"] = ["x", None, None, None, None]
+        self.data["Sem Aula(Vespertino)TM1"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TM2"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TM3"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TM4"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TA1"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TA2"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TA3"] = [None, "x", "x", "x", "x"]
+        self.data["Sem Aula(Vespertino)TA4"] = [None, "x", "x", "x", "x"]
+
+
     def get_schedule(self, professor_name):
         if professor_name in self.data:
             return [(dia, self.data[professor_name][dia - 1]) for dia in range(1, 6)]
         else:
             return None
 
-    def teacher_work_inday(self, professor_name, dia):
+    def teacher_no_work_inday(self, professor_name, dia):
         if professor_name in self.data and 1 <= dia <= 5:
             status = self.data[professor_name][dia - 1]
             return status == "x"
@@ -62,14 +80,14 @@ class ProfessorRepository:
             return False
 if __name__ == "__main__":
     repo = ProfessorRepository()
-    nome_professor = "Carolina Berger"
-    horario = repo.get_schedule(nome_professor)
-    if horario:
-        print(f"Horário de trabalho de {nome_professor}:")
-        for dia, status in horario:
-            if status == "x":
-                print(f"Dia {dia}: Não trabalha")
-            else:
-                print(f"Dia {dia}: Trabalha")
-    else:
-        print(f"Professor {nome_professor} não encontrado.")
+    # nome_professor = "Carolina Berger"
+    # horario = repo.get_schedule(nome_professor)
+    # if horario:
+    #     print(f"Horário de trabalho de {nome_professor}:")
+    #     for dia, status in horario:
+    #         if status == "x":
+    #             print(f"Dia {dia}: Não trabalha")
+    #         else:
+    #             print(f"Dia {dia}: Trabalha")
+    # else:
+    #     print(f"Professor {nome_professor} não encontrado.")

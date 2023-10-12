@@ -5,15 +5,14 @@ import socket
 import Pyro5.api
 
 from Chromosome import Chromosome
-from MatutinoRepository import MatutinoRepository
 from ProfessorRepository import ProfessorRepository
 
 
 @Pyro5.api.expose
 class Rating(object):
     def __init__(self):
-        self.matutinoRepository = MatutinoRepository()
-        self.professorRepository = ProfessorRepository()
+        self.disciplinasRepository = None
+        self.professorRepository = None
 
     def rate(self, data):
         decoded_bytes = base64.b64decode(data["data"])
@@ -21,6 +20,9 @@ class Rating(object):
 
         chromosome: Chromosome
         for chromosome in generation_chromosomes:
+            self.disciplinasRepository = chromosome.disciplinasRepository
+            self.professorRepository = chromosome.disciplinasRepository.professor_repository
+            
             chromosome.avaliation = 10000
             avaliation = 10000
 
@@ -61,13 +63,16 @@ class Rating(object):
 
     def teacher_is_unavailable(self, chromosome, avaliation):
         count = 0
+        professor_treta = None
         for gene in chromosome.values:
             if gene != 0:
-                teacher = self.matutinoRepository.getTeacherByDisciplineId(gene)
+                teacher = self.disciplinasRepository.getTeacherByDisciplineId(gene)
                 dia = (chromosome.get_chosen_day(count))
-                unavailable = self.professorRepository.teacher_work_inday(teacher, dia)
+                unavailable = self.professorRepository.teacher_no_work_inday(teacher, dia)
                 if unavailable:
                     avaliation -= 5
+                    if(avaliation == 9995):
+                        professor_treta = (teacher,dia)
             count += 1
         return avaliation
 
@@ -86,8 +91,13 @@ class Rating(object):
                             unique_professors.add(teacher)
 
     def check_workload(self, chromosome, avaliation, course):
-        for phase in ["2", "4", "6", "8", "10"]:
-            required_disciplines = self.matutinoRepository.getDisciplinesByPhaseAndCourse(course, phase)
+        if chromosome.isMatutino:
+            fases_disponiveis = ["2", "4", "6", "8", "10"]
+        else:
+            fases_disponiveis = ["1", "2", "3", "4"]    
+            
+        for phase in fases_disponiveis:
+            required_disciplines = self.disciplinasRepository.getDisciplinesByPhaseAndCourse(course, phase)
 
             for discipline in required_disciplines:
                 required_ch = discipline["CH"]
@@ -96,6 +106,7 @@ class Rating(object):
                 expected_genes = required_ch // 40
                 if count == expected_genes:
                     continue
+
 
                 penalty = abs(count - expected_genes) * 30
                 avaliation -= penalty
@@ -134,7 +145,7 @@ class Rating(object):
                 count = 0
                 for gene in partial_chromosome.values:
                     if gene != 0:
-                        teacher = self.matutinoRepository.getTeacherByDisciplineId(gene)
+                        teacher = self.disciplinasRepository.getTeacherByDisciplineId(gene)
                         dia = (partial_chromosome.get_chosen_day(count))
                         period = partial_chromosome.get_period(count + 1)
                         schedule_by_weekday[dia][period]["professores"].append((teacher, partial_chromosome))
