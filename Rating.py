@@ -63,7 +63,6 @@ class Rating(object):
 
     def teacher_is_unavailable(self, chromosome, avaliation):
         count = 0
-        professor_treta = None
         for gene in chromosome.values:
             if gene != 0:
                 teacher = self.disciplinasRepository.getTeacherByDisciplineId(gene)
@@ -71,8 +70,6 @@ class Rating(object):
                 unavailable = self.professorRepository.teacher_no_work_inday(teacher, dia)
                 if unavailable:
                     avaliation -= 5
-                    if(avaliation == 9995):
-                        professor_treta = (teacher,dia)
             count += 1
         return avaliation
 
@@ -188,5 +185,15 @@ if __name__ == "__main__":
     server = Pyro5.api.Daemon(host=IP)
     uri = server.register(Rating)
     print(f"Server URI: {uri}")
+
+    server_host = "192.168.1.7"
+    server_port = 8888
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((server_host, server_port))
+    client.send(str(uri).encode('utf-8'))
+    response = client.recv(4096).decode('utf-8')
+    print(f"Resposta do servidor: {response}")
+    client.close()
+
     server.requestLoop()
     print("\tWaiting requests...")

@@ -3,6 +3,7 @@ import copy
 import csv
 import multiprocessing
 import pickle
+import socket
 import time
 
 import Pyro5.api
@@ -20,11 +21,19 @@ class TimetablingResolver:
         self.crossover_chance_percentage = 70
         self.mutation_chance_percentage = 45
         self.courses = None
-        self.connection_uris = ["PYRO:obj_4e69f63c23424a56a3c93c934ce08e17@192.168.1.7:34468",
-                                "PYRO:obj_dd5db83609be46928a737b446d4dffd7@192.168.1.7:34535",
-                                "PYRO:obj_af55bffcbbdf4381b49c01fe5367918c@192.168.1.7:34747"]
+        self.connection_uris = self.request_string_list("192.168.1.7",8888).split('\n')
         self.servers_disponiveis = len(self.connection_uris)
         self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
+
+    def request_string_list(self, server_host, server_port):
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client.connect((server_host, server_port))
+
+        client.send("GET_LIST".encode('utf-8'))
+        response = client.recv(4096).decode('utf-8')
+        client.close()
+
+        return response
 
     def start(self, isMatutino, courses, show_print):
         self.courses = courses
@@ -207,10 +216,11 @@ if __name__ == "__main__":
     process_matutino = multiprocessing.Process(target=solver.run_with_matutino)
     process_vespertino = multiprocessing.Process(target=solver.run_without_matutino)
 
+    start_time = time.perf_counter()
+
     process_matutino.start()
     process_vespertino.start()
 
-    start_time = time.perf_counter()
     process_matutino.join()
     process_vespertino.join()
     end_time = time.perf_counter()
