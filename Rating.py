@@ -186,7 +186,7 @@ if __name__ == "__main__":
     uri = server.register(Rating)
     print(f"Server URI: {uri}")
 
-    server_host = "192.168.1.7"
+    server_host = "10.151.34.116"
     server_port = 8888
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((server_host, server_port))
