@@ -10,7 +10,6 @@ import Pyro5.api
 
 from Chromosome import Chromosome
 from Crossover import Crossover
-from DisciplinasRepository import DisciplinasRepository
 from Mutation import Mutation
 
 

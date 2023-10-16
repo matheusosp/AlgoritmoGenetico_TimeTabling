@@ -52,13 +52,6 @@ class DisciplinasRepository:
                         return discipline["Professor"]
         return None
 
-    def get_disciplinas_por_curso(self, curso):
-        disciplinas_curso = []
-        if curso in self.courses:
-            for fase, disciplinas in self.courses[curso].items():
-                disciplinas_curso.extend(disciplinas)
-        return disciplinas_curso
-
     def get_disciplinas_faltantes_no_cromossomo(self, cromossomo, curso, fase):
         disciplinas_faltantes = []
         required_disciplines = self.getDisciplinesByPhaseAndCourse(curso, fase)
