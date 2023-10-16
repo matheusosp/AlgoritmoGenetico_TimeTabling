@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c98a9c9d-f82b-4461-8803-0ff6d3dc5970" name="Changes" comment="Outro commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="c98a9c9d-f82b-4461-8803-0ff6d3dc5970" name="Changes" comment="Outro commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +218,7 @@
       <workItem from="1696900785066" duration="104191000" />
       <workItem from="1697170266711" duration="805000" />
       <workItem from="1697189040423" duration="2385000" />
-      <workItem from="1697346670971" duration="8183000" />
+      <workItem from="1697346670971" duration="8521000" />
     </task>
     <task id="LOCAL-00001" summary="outro commit">
       <option name="closed" value="true" />
@@ -407,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697448806296</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Outro commit">
+      <option name="closed" value="true" />
+      <created>1697450221987</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1697450221987</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

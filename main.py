@@ -20,7 +20,7 @@ class TimetablingResolver:
         self.crossover_chance_percentage = 70
         self.mutation_chance_percentage = 45
         self.courses = None
-        self.connection_uris = self.request_string_list("192.168.1.7",8888).split('\n')
+        self.connection_uris = self.request_string_list("10.151.34.116",8888).split('\n')
         self.servers_disponiveis = len(self.connection_uris)
         self.generation_length_to_send = int(self.population_size / self.servers_disponiveis)
 
