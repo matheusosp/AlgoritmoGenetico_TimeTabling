@@ -16,13 +16,13 @@ class Crossover:
             parent1 = Crossover.selectParent(generationChromosomes, faATotal)
             parent2 = Crossover.selectParent(generationChromosomes, faATotal)
 
-            parent1_grouped = Crossover.group_chromosomes_by_phase(parent1)
-            parent2_grouped = Crossover.group_chromosomes_by_phase(parent2)
+            parent1_grouped_by_phase = Crossover.group_chromosomes_by_phase(parent1)
+            parent2_grouped_by_phase = Crossover.group_chromosomes_by_phase(parent2)
 
             final_chromosome_grouped = []
-            for key in parent1_grouped:
-                partialchromosome1_groupedby_phase = parent1_grouped[key]
-                partialchromosome2_groupedby_phase = parent2_grouped[key]
+            for phase in parent1_grouped_by_phase:
+                partialchromosome1_groupedby_phase = parent1_grouped_by_phase[phase]
+                partialchromosome2_groupedby_phase = parent2_grouped_by_phase[phase]
                 crossover_point = random.randint(0, len(partialchromosome1_groupedby_phase) - 1)
                 if random.randint(1, 100) <= crossoverChancePercentage:
                     final_chromosome_grouped.append(
