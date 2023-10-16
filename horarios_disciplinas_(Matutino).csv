@@ -1,30 +1,30 @@
 Ciência da Computação (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Álgebra Linear e Geometria Analítica;Linguagens e Paradigmas de Programação;Programação Orientada a Objetos;Programação Orientada a Objetos;Linguagens e Paradigmas de Programação
-2a fase;10h-12h;Álgebra Linear e Geometria Analítica;Introdução à Redes de Computadores;Arquitetura e Organização de Computadores;Introdução à Redes de Computadores;Arquitetura e Organização de Computadores
-4a fase;8h-10h;Fundamentos de Bancos de Dados;Cálculo Numérico;Fundamentos de Bancos de Dados;Informática e Sociedade;Teoria da Computação
-4a fase;10h-12h;Grafos;Cálculo Numérico;Introdução à Engenharia de Software;Introdução à Engenharia de Software;Teoria da Computação
-6a fase;8h-10h;Sistemas Distribuídos;Segurança Computacional;Inteligência Artificial;Segurança Computacional;Sistemas Distribuídos
-6a fase;10h-12h;Eletiva I;Inteligência Artificial;Computação Gráfica;Eletiva I;Computação Gráfica
-8a fase;8h-10h;Gerência de Projetos;Trabalho de Conclusão de Curso (Orientador);Eletiva III;Trabalho de Conclusão de Curso (Orientador);Eletiva IV
-8a fase;10h-12h;Trabalho de Conclusão de Curso;Gerência de Projetos;Eletiva IV;Eletiva III;Trabalho de Conclusão de Curso
+2a fase;8h-10h;Introdução à Redes de Computadores;Arquitetura e Organização de Computadores;Programação Orientada a Objetos;Álgebra Linear e Geometria Analítica;Programação Orientada a Objetos
+2a fase;10h-12h;Álgebra Linear e Geometria Analítica;Linguagens e Paradigmas de Programação;Linguagens e Paradigmas de Programação;Introdução à Redes de Computadores;Arquitetura e Organização de Computadores
+4a fase;8h-10h;Grafos;Fundamentos de Bancos de Dados;Cálculo Numérico;Introdução à Engenharia de Software;Teoria da Computação
+4a fase;10h-12h;Introdução à Engenharia de Software;Fundamentos de Bancos de Dados;Teoria da Computação;Informática e Sociedade;Cálculo Numérico
+6a fase;8h-10h;Eletiva I;Inteligência Artificial;Inteligência Artificial;Sistemas Distribuídos;Segurança Computacional
+6a fase;10h-12h;Eletiva I;Segurança Computacional;Sistemas Distribuídos;Computação Gráfica;Computação Gráfica
+8a fase;8h-10h;Trabalho de Conclusão de Curso;Trabalho de Conclusão de Curso (Orientador);Trabalho de Conclusão de Curso (Orientador);Eletiva III;Eletiva III
+8a fase;10h-12h;Eletiva IV;Gerência de Projetos;Gerência de Projetos;Trabalho de Conclusão de Curso;Eletiva IV
 Engenharia Mecânica (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Álgebra Linear;Física I;Álgebra Linear;Comunicação e Expressão;Física I
-2a fase;10h-12h;Desenho Técnico II;Cálculo II;Desenho Técnico II;Estatística e Probabilidade;Cálculo II
-4a fase;8h-10h;Mecânica dos Sólidos;Mecânica dos Sólidos;Cálculo IV;Ciência e Tecnologia dos Materiais;Termodinâmica
-4a fase;10h-12h;Física III;Física III;Termodinâmica;Cálculo IV;Metrologia
-6a fase;8h-10h;Usinagem;Materiais de Construção Mecânica;Transferência de Calor;Mecanismos;Atividades de Extensão II
-6a fase;10h-12h;Mecanismos;Elementos de Máquina I;Atividades de Extensão II;Transferência de Calor;Elementos de Máquina I
-8a fase;8h-10h;Atividades de Extensão III;Conformação e Fundição;Eletiva II;Gestão de Qualidade e Produção;Manufatura Auxiliada por Computador
-8a fase;10h-12h;Máquinas Térmicas;Máquinas Térmicas;Conformação e Fundição;Atividades de Extensão III;Eletiva I
-10a fase;8h-10h;Trabalho de Conclusão de Curso II;Sem aula;Atividades de Extensão V;Trabalho de Conclusão de Curso II;Sem aula
-10a fase;10h-12h;Sem aula;Sem aula;Sem aula;Sem aula;Atividades de Extensão V
+2a fase;8h-10h;Estatística e Probabilidade;Cálculo II;Física I;Cálculo II;Álgebra Linear
+2a fase;10h-12h;Desenho Técnico II;Física I;Álgebra Linear;Desenho Técnico II;Comunicação e Expressão
+4a fase;8h-10h;Termodinâmica;Física III;Cálculo IV;Mecânica dos Sólidos;Mecânica dos Sólidos
+4a fase;10h-12h;Ciência e Tecnologia dos Materiais;Termodinâmica;Física III;Cálculo IV;Metrologia
+6a fase;8h-10h;Elementos de Máquina I;Transferência de Calor;Atividades de Extensão II;Transferência de Calor;Usinagem
+6a fase;10h-12h;Mecanismos;Elementos de Máquina I;Materiais de Construção Mecânica;Mecanismos;Atividades de Extensão II
+8a fase;8h-10h;Atividades de Extensão III;Eletiva I;Máquinas Térmicas;Conformação e Fundição;Máquinas Térmicas
+8a fase;10h-12h;Manufatura Auxiliada por Computador;Conformação e Fundição;Gestão de Qualidade e Produção;Eletiva II;Atividades de Extensão III
+10a fase;8h-10h;Sem aula;Sem aula;Sem aula;Atividades de Extensão V;Sem aula
+10a fase;10h-12h;Trabalho de Conclusão de Curso II;Sem aula;Sem aula;Atividades de Extensão V;Trabalho de Conclusão de Curso II
 Engenharia Química (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Física I;Cálculo I;Química Orgânica I;Química Orgânica I;Cálculo I
-2a fase;10h-12h;Álgebra Linear;Álgebra Linear;Metodologia da Pesquisa;Desenho Técnico;Física I
-4a fase;8h-10h;Administração para Engenharia;Informática e Programação;Físico-química II;Química Analítica II;Cálculo III
-4a fase;10h-12h;Informática e Programação;Ciência e Tecnologia dos Materiais;Estatística II;Atividades de Extensão I;Cálculo III
-6a fase;8h-10h;Cinética Química;Segurança na Indústria;Fenômenos de Transporte I;Fenômenos de Transporte I;Cálculo Numérico
-6a fase;10h-12h;Cinética Química;Projeto Integrador II;Projeto Integrador II;Termodinâmica I;Cálculo Numérico
+2a fase;8h-10h;Física I;Desenho Técnico;Química Orgânica I;Química Orgânica I;Física I
+2a fase;10h-12h;Álgebra Linear;Álgebra Linear;Cálculo I;Metodologia da Pesquisa;Cálculo I
+4a fase;8h-10h;Informática e Programação;Cálculo III;Atividades de Extensão I;Química Analítica II;Ciência e Tecnologia dos Materiais
+4a fase;10h-12h;Administração para Engenharia;Informática e Programação;Estatística II;Físico-química II;Cálculo III
+6a fase;8h-10h;Cinética Química;Segurança na Indústria;Projeto Integrador II;Cinética Química;Fenômenos de Transporte I
+6a fase;10h-12h;Termodinâmica I;Cálculo Numérico;Projeto Integrador II;Cálculo Numérico;Fenômenos de Transporte I

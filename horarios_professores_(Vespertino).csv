@@ -1,30 +1,30 @@
 Técnico em Informática para Internet (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TII1;Carlos Andres Ferrero;Fabio Aiub Sperotto;Robson Costa;Wilson Castello Branco Neto
-1a fase;10h-12h;Sem Aula(Vespertino)TII1;Carlos Andres Ferrero;Fabio Aiub Sperotto;João Augusto da Silva Bueno;Paula Clarice Santos G. de Jesus
-2a fase;8h-10h;Sem Aula(Vespertino)TII2;Leonardo Bravo Estacio;João Augusto da Silva Bueno;Fabio Aiub Sperotto;Leonardo Bravo Estacio
-2a fase;10h-12h;Sem Aula(Vespertino)TII2;Leonardo Bravo Estacio;Leonardo Bravo Estacio;Robson Costa;João Augusto da Silva Bueno
-3a fase;8h-10h;Sem Aula(Vespertino)TII3;Paula Clarice Santos G. de Jesus;Leonardo Bravo Estacio;Carlos Andres Ferrero;João Augusto da Silva Bueno
-3a fase;10h-12h;Sem Aula(Vespertino)TII3;João Augusto da Silva Bueno;João Augusto da Silva Bueno;Leonardo Bravo Estacio;Leonardo Bravo Estacio
-4a fase;8h-10h;Sem Aula(Vespertino)TII4;Sem Aula(Vespertino)TII5;Sem Aula(Vespertino)TII5;Fernando Weber Albiero;Samuel Ferreira de Melo
-4a fase;10h-12h;Sem Aula(Vespertino)TII4;Fabio Aiub Sperotto;Fernando Weber Albiero;Alexandre Perin de Souza;Fernando Weber Albiero
+1a fase;8h-10h;Sem Aula(Vespertino)TII1;Paula Clarice Santos G. de Jesus;Carlos Andres Ferrero;João Augusto da Silva Bueno;Wilson Castello Branco Neto
+1a fase;10h-12h;Sem Aula(Vespertino)TII1;Fabio Aiub Sperotto;Carlos Andres Ferrero;Fabio Aiub Sperotto;Robson Costa
+2a fase;8h-10h;Sem Aula(Vespertino)TII2;João Augusto da Silva Bueno;João Augusto da Silva Bueno;Fabio Aiub Sperotto;Leonardo Bravo Estacio
+2a fase;10h-12h;Sem Aula(Vespertino)TII2;Leonardo Bravo Estacio;Leonardo Bravo Estacio;Robson Costa;Leonardo Bravo Estacio
+3a fase;8h-10h;Sem Aula(Vespertino)TII3;Leonardo Bravo Estacio;Leonardo Bravo Estacio;Carlos Andres Ferrero;Paula Clarice Santos G. de Jesus
+3a fase;10h-12h;Sem Aula(Vespertino)TII3;João Augusto da Silva Bueno;João Augusto da Silva Bueno;Leonardo Bravo Estacio;João Augusto da Silva Bueno
+4a fase;8h-10h;Sem Aula(Vespertino)TII4;Samuel Ferreira de Melo;Fabio Aiub Sperotto;Alexandre Perin de Souza;Fernando Weber Albiero
+4a fase;10h-12h;Sem Aula(Vespertino)TII4;Sem Aula(Vespertino)TII5;Fernando Weber Albiero;Fernando Weber Albiero;Sem Aula(Vespertino)TII5
 Técnico em Mecatrônica (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TM1;Thiago Henrique Mombach;Juliana Mercedes Rheinheimer;João Augusto da Silva Bueno;Thiago Henrique Mombach
-1a fase;10h-12h;Sem Aula(Vespertino)TM1;Ricardo Teran Muhl;Juliana Mercedes Rheinheimer;Paula Clarice Santos G. de Jesus;Julio Azambuja da Silveira
-2a fase;8h-10h;Sem Aula(Vespertino)TM2;Jeferson Fraytag;Thiago Henrique Mombach;Anderson Luis Garcia Correia;Ricardo Teran Muhl
-2a fase;10h-12h;Sem Aula(Vespertino)TM2;Rafael Gustavo Schreiber;Cláudio Marques Schaeffer;Anderson Luis Garcia Correia;Jeferson Fraytag
-3a fase;8h-10h;Sem Aula(Vespertino)TM3;Cláudio Marques Schaeffer;Carlos Andres Ferrero;Jeferson Fraytag;Cláudio Marques Schaeffer
-3a fase;10h-12h;Sem Aula(Vespertino)TM3;Rogério da Silva;Ariton Araldi;Cláudio Marques Schaeffer;Gabriel Granzotto Madruga
-4a fase;8h-10h;Sem Aula(Vespertino)TM4;Rogério da Silva;Douglas Carvalho Morais;Rogério da Silva;Diego Augusto Gonzaga
-4a fase;10h-12h;Sem Aula(Vespertino)TM4;Diego Augusto Gonzaga;Rogério da Silva;Diego Augusto Gonzaga;Joelma Kremer
+1a fase;8h-10h;Sem Aula(Vespertino)TM1;Thiago Henrique Mombach;Juliana Mercedes Rheinheimer;Ricardo Teran Muhl;João Augusto da Silva Bueno
+1a fase;10h-12h;Sem Aula(Vespertino)TM1;Julio Azambuja da Silveira;Paula Clarice Santos G. de Jesus;Juliana Mercedes Rheinheimer;Thiago Henrique Mombach
+2a fase;8h-10h;Sem Aula(Vespertino)TM2;Rafael Gustavo Schreiber;Thiago Henrique Mombach;Anderson Luis Garcia Correia;Jeferson Fraytag
+2a fase;10h-12h;Sem Aula(Vespertino)TM2;Ricardo Teran Muhl;Cláudio Marques Schaeffer;Anderson Luis Garcia Correia;Jeferson Fraytag
+3a fase;8h-10h;Sem Aula(Vespertino)TM3;Ariton Araldi;Cláudio Marques Schaeffer;Jeferson Fraytag;Cláudio Marques Schaeffer
+3a fase;10h-12h;Sem Aula(Vespertino)TM3;Gabriel Granzotto Madruga;Rogério da Silva;Carlos Andres Ferrero;Cláudio Marques Schaeffer
+4a fase;8h-10h;Sem Aula(Vespertino)TM4;Diego Augusto Gonzaga;Rogério da Silva;Douglas Carvalho Morais;Diego Augusto Gonzaga
+4a fase;10h-12h;Sem Aula(Vespertino)TM4;Rogério da Silva;Joelma Kremer;Rogério da Silva;Diego Augusto Gonzaga
 Técnico em Administração (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TA1;Larisse Kupski;Larisse Kupski;Juliana Mercedes Rheinheimer;Paula Clarice Santos G. de Jesus
-1a fase;10h-12h;Sem Aula(Vespertino)TA1;Paula Clarice Santos G. de Jesus;Carlos Andres Ferrero;Carlos Andres Ferrero;Juliana Mercedes Rheinheimer
-2a fase;8h-10h;Sem Aula(Vespertino)TA2;Marisa Santos Sanson;Samuel Ferreira de Melo;Joelma Kremer;Marisa Santos Sanson
-2a fase;10h-12h;Sem Aula(Vespertino)TA2;Samuel Ferreira de Melo;Joelma Kremer;Thiago Meneghel Rodrigues;Thiago Meneghel Rodrigues
-3a fase;8h-10h;Sem Aula(Vespertino)TA3;Samuel Ferreira de Melo;Paula Clarice Santos G. de Jesus;Thiago Meneghel Rodrigues;Thiago Meneghel Rodrigues
-3a fase;10h-12h;Sem Aula(Vespertino)TA3;Larisse Kupski;Paula Clarice Santos G. de Jesus;Larisse Kupski;Samuel Ferreira de Melo
-4a fase;8h-10h;Sem Aula(Vespertino)TA4;Fabio Aiub Sperotto;Marisa Santos Sanson;Larisse Kupski;Joelma Kremer
-4a fase;10h-12h;Sem Aula(Vespertino)TA4;Thiago Meneghel Rodrigues;Thiago Meneghel Rodrigues;Joelma Kremer;Marisa Santos Sanson
+1a fase;8h-10h;Sem Aula(Vespertino)TA1;Carlos Andres Ferrero;Paula Clarice Santos G. de Jesus;Juliana Mercedes Rheinheimer;Juliana Mercedes Rheinheimer
+1a fase;10h-12h;Sem Aula(Vespertino)TA1;Carlos Andres Ferrero;Larisse Kupski;Larisse Kupski;Paula Clarice Santos G. de Jesus
+2a fase;8h-10h;Sem Aula(Vespertino)TA2;Marisa Santos Sanson;Marisa Santos Sanson;Thiago Meneghel Rodrigues;Samuel Ferreira de Melo
+2a fase;10h-12h;Sem Aula(Vespertino)TA2;Samuel Ferreira de Melo;Thiago Meneghel Rodrigues;Joelma Kremer;Joelma Kremer
+3a fase;8h-10h;Sem Aula(Vespertino)TA3;Thiago Meneghel Rodrigues;Samuel Ferreira de Melo;Paula Clarice Santos G. de Jesus;Larisse Kupski
+3a fase;10h-12h;Sem Aula(Vespertino)TA3;Larisse Kupski;Samuel Ferreira de Melo;Paula Clarice Santos G. de Jesus;Thiago Meneghel Rodrigues
+4a fase;8h-10h;Sem Aula(Vespertino)TA4;Fabio Aiub Sperotto;Joelma Kremer;Joelma Kremer;Thiago Meneghel Rodrigues
+4a fase;10h-12h;Sem Aula(Vespertino)TA4;Thiago Meneghel Rodrigues;Marisa Santos Sanson;Marisa Santos Sanson;Larisse Kupski

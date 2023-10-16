@@ -1,30 +1,30 @@
 Técnico em Informática para Internet (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TII1;Introdução à Programação;Banco de Dados;Sistemas e Conectividade;Introdução à Programação
-1a fase;10h-12h;Sem Aula(Vespertino)TII1;Introdução à Programação;Banco de Dados;Sistemas e Conectividade;Comunicação e Expressão
-2a fase;8h-10h;Sem Aula(Vespertino)TII2;Desenvolvimento de Sistemas Web I;Sistema de Gerenciamento de Conteúdos;Desenvolvimento de Sistemas Web I;Web Design
-2a fase;10h-12h;Sem Aula(Vespertino)TII2;Web Design;Desenvolvimento de Sistemas Web I;Segurança da Informação;Sistema de Gerenciamento de Conteúdos
-3a fase;8h-10h;Sem Aula(Vespertino)TII3;Inglês Aplicado;Desenvolvimento de Sistemas Web II;Administração e Suporte de Sistemas;Análise e Projeto de Sistemas
-3a fase;10h-12h;Sem Aula(Vespertino)TII3;Análise e Projeto de Sistemas;Gestão e Ética em TI;Desenvolvimento de Sistemas Web II;Desenvolvimento de Sistemas Web II
-4a fase;8h-10h;Sem Aula(Vespertino)TII4;Sem Aula(Vespertino)TII5;Sem Aula(Vespertino)TII5;Desenvolvimento para Dispositivos Móveis;Empreendedorismo
-4a fase;10h-12h;Sem Aula(Vespertino)TII4;Tópicos em Programação;Desenvolvimento para Dispositivos Móveis;Teste de Software;Desenvolvimento para Dispositivos Móveis
+1a fase;8h-10h;Sem Aula(Vespertino)TII1;Comunicação e Expressão;Introdução à Programação;Sistemas e Conectividade;Introdução à Programação
+1a fase;10h-12h;Sem Aula(Vespertino)TII1;Banco de Dados;Introdução à Programação;Banco de Dados;Sistemas e Conectividade
+2a fase;8h-10h;Sem Aula(Vespertino)TII2;Sistema de Gerenciamento de Conteúdos;Sistema de Gerenciamento de Conteúdos;Desenvolvimento de Sistemas Web I;Web Design
+2a fase;10h-12h;Sem Aula(Vespertino)TII2;Web Design;Desenvolvimento de Sistemas Web I;Segurança da Informação;Desenvolvimento de Sistemas Web I
+3a fase;8h-10h;Sem Aula(Vespertino)TII3;Desenvolvimento de Sistemas Web II;Desenvolvimento de Sistemas Web II;Administração e Suporte de Sistemas;Inglês Aplicado
+3a fase;10h-12h;Sem Aula(Vespertino)TII3;Análise e Projeto de Sistemas;Gestão e Ética em TI;Desenvolvimento de Sistemas Web II;Análise e Projeto de Sistemas
+4a fase;8h-10h;Sem Aula(Vespertino)TII4;Empreendedorismo;Tópicos em Programação;Teste de Software;Desenvolvimento para Dispositivos Móveis
+4a fase;10h-12h;Sem Aula(Vespertino)TII4;Sem Aula(Vespertino)TII5;Desenvolvimento para Dispositivos Móveis;Desenvolvimento para Dispositivos Móveis;Sem Aula(Vespertino)TII5
 Técnico em Mecatrônica (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TM1;Eletricidade;Cálculo Técnico;Informática;Eletricidade
-1a fase;10h-12h;Sem Aula(Vespertino)TM1;Metrologia;Cálculo Técnico;Linguagem e Comunicação;Desenho Técnico
-2a fase;8h-10h;Sem Aula(Vespertino)TM2;Eletrônica;Circuitos Elétricos;Desenho CAD;Processos de Fabricação Mecânica
-2a fase;10h-12h;Sem Aula(Vespertino)TM2;Elementos de Máquinas;Tecnologia de Materiais I;Desenho CAD;Eletrônica
-3a fase;8h-10h;Sem Aula(Vespertino)TM3;Projeto Integrador I;Linguagem de Programação;Eletrônica Industrial;Motores Elétricos e Acionamentos Eletrônicos
-3a fase;10h-12h;Sem Aula(Vespertino)TM3;Microcontroladores;CNC;Hidráulica e Pneumática I;Instrumentação
-4a fase;8h-10h;Sem Aula(Vespertino)TM4;Redes Industriais e Supervisório;Projeto Integrador II;Robótica;Hidráulica e Pneumática II
-4a fase;10h-12h;Sem Aula(Vespertino)TM4;Controle e Automação;Robótica;Controle e Automação;Empreendedorismo
+1a fase;8h-10h;Sem Aula(Vespertino)TM1;Eletricidade;Cálculo Técnico;Metrologia;Informática
+1a fase;10h-12h;Sem Aula(Vespertino)TM1;Desenho Técnico;Linguagem e Comunicação;Cálculo Técnico;Eletricidade
+2a fase;8h-10h;Sem Aula(Vespertino)TM2;Elementos de Máquinas;Circuitos Elétricos;Desenho CAD;Eletrônica
+2a fase;10h-12h;Sem Aula(Vespertino)TM2;Processos de Fabricação Mecânica;Tecnologia de Materiais I;Desenho CAD;Eletrônica
+3a fase;8h-10h;Sem Aula(Vespertino)TM3;CNC;Motores Elétricos e Acionamentos Eletrônicos;Eletrônica Industrial;Projeto Integrador I
+3a fase;10h-12h;Sem Aula(Vespertino)TM3;Instrumentação;Microcontroladores;Linguagem de Programação;Hidráulica e Pneumática I
+4a fase;8h-10h;Sem Aula(Vespertino)TM4;Hidráulica e Pneumática II;Robótica;Projeto Integrador II;Controle e Automação
+4a fase;10h-12h;Sem Aula(Vespertino)TM4;Redes Industriais e Supervisório;Empreendedorismo;Robótica;Controle e Automação
 Técnico em Administração (Vespertino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-1a fase;8h-10h;Sem Aula(Vespertino)TA1;Fundamentos da Administração;Fundamentos da Administração;Matemática Aplicada à Administração;Português
-1a fase;10h-12h;Sem Aula(Vespertino)TA1;Português;Informática Básica;Informática Básica;Matemática Aplicada à Administração
-2a fase;8h-10h;Sem Aula(Vespertino)TA2;Matemática e Rotinas Financeiras;Administração de Pessoas;Economia Solidária, Associativismo e Cooperativismo;Matemática e Rotinas Financeiras
-2a fase;10h-12h;Sem Aula(Vespertino)TA2;Administração de Pessoas;Economia Solidária, Associativismo e Cooperativismo;Administração de Marketing;Administração de Marketing
-3a fase;8h-10h;Sem Aula(Vespertino)TA3;Administração de Materiais;Redação Oficial;Gestão de Turismo e Meio Ambiente;Gestão de Turismo e Meio Ambiente
-3a fase;10h-12h;Sem Aula(Vespertino)TA3;Administração de Produção;Redação Oficial;Administração de Produção;Administração de Materiais
-4a fase;8h-10h;Sem Aula(Vespertino)TA4;Sistemas de Informação;Empreendedorismo;Projeto Integrador;Responsabilidade Socioambiental
-4a fase;10h-12h;Sem Aula(Vespertino)TA4;Administração Pública;Administração Pública;Responsabilidade Socioambiental;Empreendedorismo
+1a fase;8h-10h;Sem Aula(Vespertino)TA1;Informática Básica;Português;Matemática Aplicada à Administração;Matemática Aplicada à Administração
+1a fase;10h-12h;Sem Aula(Vespertino)TA1;Informática Básica;Fundamentos da Administração;Fundamentos da Administração;Português
+2a fase;8h-10h;Sem Aula(Vespertino)TA2;Matemática e Rotinas Financeiras;Matemática e Rotinas Financeiras;Administração de Marketing;Administração de Pessoas
+2a fase;10h-12h;Sem Aula(Vespertino)TA2;Administração de Pessoas;Administração de Marketing;Economia Solidária, Associativismo e Cooperativismo;Economia Solidária, Associativismo e Cooperativismo
+3a fase;8h-10h;Sem Aula(Vespertino)TA3;Gestão de Turismo e Meio Ambiente;Administração de Materiais;Redação Oficial;Administração de Produção
+3a fase;10h-12h;Sem Aula(Vespertino)TA3;Administração de Produção;Administração de Materiais;Redação Oficial;Gestão de Turismo e Meio Ambiente
+4a fase;8h-10h;Sem Aula(Vespertino)TA4;Sistemas de Informação;Responsabilidade Socioambiental;Responsabilidade Socioambiental;Administração Pública
+4a fase;10h-12h;Sem Aula(Vespertino)TA4;Administração Pública;Empreendedorismo;Empreendedorismo;Projeto Integrador

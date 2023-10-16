@@ -1,30 +1,30 @@
 Ciência da Computação (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Vilma Gisele Karsburg;Wilson Castello Branco Neto;Alexandre Perin de Souza;Alexandre Perin de Souza;Wilson Castello Branco Neto
-2a fase;10h-12h;Vilma Gisele Karsburg;Robson Costa;Robson Costa;Robson Costa;Robson Costa
-4a fase;8h-10h;Fabio Aiub Sperotto;Vilma Gisele Karsburg;Fabio Aiub Sperotto;Fernando Weber Albiero;Alexandre Perin de Souza
-4a fase;10h-12h;Wilson Castello Branco Neto;Vilma Gisele Karsburg;Alexandre Perin de Souza;Alexandre Perin de Souza;Wilson Castello Branco Neto
-6a fase;8h-10h;Robson Costa;Robson Costa;Wilson Castello Branco Neto;Robson Costa;Robson Costa
-6a fase;10h-12h;Carlos Andres Ferrero;Wilson Castello Branco Neto;Vilson Heck Junior;Carlos Andres Ferrero;Vilson Heck Junior
-8a fase;8h-10h;Leonardo Bravo Estacio;Orientador;Vilson Heck Junior;Orientador;Fernando Weber Albiero
-8a fase;10h-12h;Alexandre Perin de Souza;Leonardo Bravo Estacio;Fernando Weber Albiero;Vilson Heck Junior;Alexandre Perin de Souza
+2a fase;8h-10h;Robson Costa;Robson Costa;Alexandre Perin de Souza;Vilma Gisele Karsburg;Alexandre Perin de Souza
+2a fase;10h-12h;Vilma Gisele Karsburg;Wilson Castello Branco Neto;Wilson Castello Branco Neto;Robson Costa;Robson Costa
+4a fase;8h-10h;Wilson Castello Branco Neto;Fabio Aiub Sperotto;Vilma Gisele Karsburg;Alexandre Perin de Souza;Wilson Castello Branco Neto
+4a fase;10h-12h;Alexandre Perin de Souza;Fabio Aiub Sperotto;Alexandre Perin de Souza;Fernando Weber Albiero;Vilma Gisele Karsburg
+6a fase;8h-10h;Carlos Andres Ferrero;Wilson Castello Branco Neto;Wilson Castello Branco Neto;Robson Costa;Robson Costa
+6a fase;10h-12h;Carlos Andres Ferrero;Robson Costa;Robson Costa;Vilson Heck Junior;Vilson Heck Junior
+8a fase;8h-10h;Alexandre Perin de Souza;Orientador;Orientador;Vilson Heck Junior;Vilson Heck Junior
+8a fase;10h-12h;Fernando Weber Albiero;Leonardo Bravo Estacio;Leonardo Bravo Estacio;Alexandre Perin de Souza;Fernando Weber Albiero
 Engenharia Mecânica (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Juliana Mercedes Rheinheimer;Eliana Fernandes Borragini;Juliana Mercedes Rheinheimer;Paula Clarice Santos G. de Jesus;Eliana Fernandes Borragini
-2a fase;10h-12h;Natalia Madalena Boelter;Ailton Durigon;Natalia Madalena Boelter;Vilma Gisele Karsburg;Ailton Durigon
-4a fase;8h-10h;Anderson Luis Garcia Correia;Anderson Luis Garcia Correia;Ailton Durigon;Rafael Gustavo Schreiber;Matheus Fontanelle Pereira
-4a fase;10h-12h;Eliana Fernandes Borragini;Eliana Fernandes Borragini;Matheus Fontanelle Pereira;Ailton Durigon;Ricardo Teran Muhl
-6a fase;8h-10h;Ariton Araldi;Cláudio Marques Schaeffer;Matheus Fontanelle Pereira;Anderson Luis Garcia Correia;Fernando da Silva Osório
-6a fase;10h-12h;Anderson Luis Garcia Correia;Rafael Gustavo Schreiber;Fernando da Silva Osório;Matheus Fontanelle Pereira;Rafael Gustavo Schreiber
-8a fase;8h-10h;Natalia Madalena Boelter;Rafael Gustavo Schreiber;Rogério da Silva;Larisse Kupski;Ariton Araldi
-8a fase;10h-12h;Matheus Fontanelle Pereira;Matheus Fontanelle Pereira;Cláudio Marques Schaeffer;Natalia Madalena Boelter;Diego Augusto Gonzaga
-10a fase;8h-10h;Matheus Fontanelle Pereira;Nenhum;Fernando da Silva Osório;Matheus Fontanelle Pereira;Nenhum
-10a fase;10h-12h;Nenhum;Nenhum;Nenhum;Nenhum;Fernando da Silva Osório
+2a fase;8h-10h;Vilma Gisele Karsburg;Ailton Durigon;Eliana Fernandes Borragini;Ailton Durigon;Juliana Mercedes Rheinheimer
+2a fase;10h-12h;Natalia Madalena Boelter;Eliana Fernandes Borragini;Juliana Mercedes Rheinheimer;Natalia Madalena Boelter;Paula Clarice Santos G. de Jesus
+4a fase;8h-10h;Matheus Fontanelle Pereira;Eliana Fernandes Borragini;Ailton Durigon;Anderson Luis Garcia Correia;Anderson Luis Garcia Correia
+4a fase;10h-12h;Rafael Gustavo Schreiber;Matheus Fontanelle Pereira;Eliana Fernandes Borragini;Ailton Durigon;Ricardo Teran Muhl
+6a fase;8h-10h;Rafael Gustavo Schreiber;Matheus Fontanelle Pereira;Fernando da Silva Osório;Matheus Fontanelle Pereira;Ariton Araldi
+6a fase;10h-12h;Anderson Luis Garcia Correia;Rafael Gustavo Schreiber;Cláudio Marques Schaeffer;Anderson Luis Garcia Correia;Fernando da Silva Osório
+8a fase;8h-10h;Natalia Madalena Boelter;Diego Augusto Gonzaga;Matheus Fontanelle Pereira;Rafael Gustavo Schreiber;Matheus Fontanelle Pereira
+8a fase;10h-12h;Ariton Araldi;Cláudio Marques Schaeffer;Larisse Kupski;Rogério da Silva;Natalia Madalena Boelter
+10a fase;8h-10h;Nenhum;Nenhum;Nenhum;Fernando da Silva Osório;Nenhum
+10a fase;10h-12h;Matheus Fontanelle Pereira;Nenhum;Nenhum;Fernando da Silva Osório;Matheus Fontanelle Pereira
 Engenharia Química (Matutino)
 ;;Segunda;Terça;Quarta;Quinta;Sexta
-2a fase;8h-10h;Eliana Fernandes Borragini;Ailton Durigon;Carolina Berger;Carolina Berger;Ailton Durigon
-2a fase;10h-12h;Geovani Raulino;Geovani Raulino;Taiana Maria Deboni;Ricardo Teran Muhl;Eliana Fernandes Borragini
-4a fase;8h-10h;Thiago Meneghel Rodrigues;Eder Corvalão;Marco Aurélio Woehl;Haroldo Gregório de Oliveira;Geovani Raulino
-4a fase;10h-12h;Eder Corvalão;Jaqueline Suave;Gustavo Henrique S. Flores Ponce;Gustavo Henrique S. Flores Ponce;Geovani Raulino
-6a fase;8h-10h;Jaqueline Suave;Michael Ramos Nunes;Gustavo Henrique S. Flores Ponce;Gustavo Henrique S. Flores Ponce;Vilma Gisele Karsburg
-6a fase;10h-12h;Jaqueline Suave;Haroldo Gregório de Oliveira;Haroldo Gregório de Oliveira;Diego Bittencourt Machado;Vilma Gisele Karsburg
+2a fase;8h-10h;Eliana Fernandes Borragini;Ricardo Teran Muhl;Carolina Berger;Carolina Berger;Eliana Fernandes Borragini
+2a fase;10h-12h;Geovani Raulino;Geovani Raulino;Ailton Durigon;Taiana Maria Deboni;Ailton Durigon
+4a fase;8h-10h;Eder Corvalão;Geovani Raulino;Gustavo Henrique S. Flores Ponce;Haroldo Gregório de Oliveira;Jaqueline Suave
+4a fase;10h-12h;Thiago Meneghel Rodrigues;Eder Corvalão;Gustavo Henrique S. Flores Ponce;Marco Aurélio Woehl;Geovani Raulino
+6a fase;8h-10h;Jaqueline Suave;Michael Ramos Nunes;Haroldo Gregório de Oliveira;Jaqueline Suave;Gustavo Henrique S. Flores Ponce
+6a fase;10h-12h;Diego Bittencourt Machado;Vilma Gisele Karsburg;Haroldo Gregório de Oliveira;Vilma Gisele Karsburg;Gustavo Henrique S. Flores Ponce

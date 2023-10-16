@@ -74,7 +74,6 @@ class TimetablingResolver:
                 print("-------------------------------- Geração " + str(count) + " --------------------------------")
 
             generation_chromosomes_to_send = [[] for _ in range(self.servers_disponiveis)]
-            new_generation = []
             for course, course_chromosomes in grouped_chromosomes_by_course.items():
                 elite_chromosomes = sorted(course_chromosomes, key=lambda x: x.avaliation, reverse=True)
                 chosen_chromosomes = elite_chromosomes[:self.num_chromosomes_elitism]
@@ -87,7 +86,6 @@ class TimetablingResolver:
 
                 Mutation.mutate(self.mutation_chance_percentage, new_course_chromosomes, course,
                                 self.num_chromosomes_elitism)
-                new_generation.extend(new_course_chromosomes)
 
                 self.update_generation_chromosomes_to_send(generation_chromosomes_to_send, new_course_chromosomes)
 
